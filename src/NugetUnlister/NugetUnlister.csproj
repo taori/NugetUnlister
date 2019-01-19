@@ -1,11 +1,42 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>netcoreapp2.2</TargetFramework>
+		<TargetFramework>netcoreapp2.1</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<PackAsTool>true</PackAsTool>
 		<ToolCommandName>nuget-unlist</ToolCommandName>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<Authors>Andreas Müller</Authors>
+		<Product>Andreas Müller</Product>
+		<Copyright>2019</Copyright>
+		<PackageLicenseUrl>https://github.com/taori/NugetUnlister/blob/master/LICENSE</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/taori/NugetUnlister</PackageProjectUrl>
 	</PropertyGroup>
+
+	<PropertyGroup>
+		<VersionPrefix>0.1.0</VersionPrefix>
+		<VersionSuffix></VersionSuffix>
+		<RepositoryUrl>https://github.com/taori/NugetUnlister.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>portable</DebugType>
+	</PropertyGroup>
+
+	<!-- SourceLink -->
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<!-- Optional: Declare that the Repository URL can be published to NuSpec -->
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<!-- Optional: Embed source files that are not tracked by the source control manager to the PDB -->
+		<!-- <EmbedUntrackedSources>true</EmbedUntrackedSources> -->
+		<!-- Optional: Include PDB in the built .nupkg -->
+		<!-- <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder> -->
+		<!-- https://github.com/dotnet/sourcelink/blob/master/docs/README.md#embedallsources -->
+		<!-- <EmbedAllSources>true</EmbedAllSources> -->
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="CommandDotNet" Version="2.7.5" />

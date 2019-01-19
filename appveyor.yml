@@ -2,37 +2,28 @@ version: CI {branch} Build {build}
 image: Visual Studio 2019 Preview
 configuration: Release
 platform: Any CPU
-environment:
- NUGET_DEPLOY_SECRET:
-  secure: cM8uuOzvNOaDyTnb9fRQbRi5sm5Tc/NqcpvscOA798nT7qAS16nfxqFGHFNTr3EG
+environment:  
+ DEPLOYSECRET:
+  secure: ozR9OxQlYJFAZfT0+WgueGhAZAoCrcAnn5VN8iPsiqGee+E7zJ6rPuUqQgsdJuNT
  
 pull_requests:
   do_not_increment_build_number: true
 init:
 - ps: ''
 install:
-- ps: #nuget sources
-- ps: #dotnet nuget --version
-- ps: #appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-- ps: $env:PADDED_BUILD_NUMBER = ([int]$env:appveyor_build_number).ToString("00000")
+- ps: (new-object Net.WebClient).DownloadString("https://raw.githubusercontent.com/taori/buildscripts/master/appveyor/custom.ps1") | iex
 nuget:
   disable_publish_on_pr: true
   disable_publish_octopus: true  
 artifacts:
-#- path: '.\snupkg\**\*.snupkg'
-#  name: ReleaseSnu
-#- path: '.\snupkg\**\*.nupkg'
-#  name: ReleaseSnu
 - path: '.\nupkg\**\*.nupkg'
   name: Release
       
 deploy:
 - provider: NuGet
   api_key:
-    secure: cM8uuOzvNOaDyTnb9fRQbRi5sm5Tc/NqcpvscOA798nT7qAS16nfxqFGHFNTr3EG
+    secure: ozR9OxQlYJFAZfT0+WgueGhAZAoCrcAnn5VN8iPsiqGee+E7zJ6rPuUqQgsdJuNT
   artifact: Release
-#after_deploy:
-# - ps : Get-ChildItem .\snupkg\*.snupkg | % { dotnet nuget push $_.FullName -s https://api.nuget.org/v3/index.json -k $env:NUGET_DEPLOY_SECRET }
   
 for:
 
@@ -43,14 +34,15 @@ for:
       - dev
   build_script:
    - ps: >-
-   
-      $env:csprojVersionPrefix = Select-Xml -Path .\src\Amusoft.UI.WPF\Amusoft.UI.WPF.csproj -XPath //Project/PropertyGroup/VersionPrefix | Select -ExpandProperty Node | Select -Expand '#text'
+
+      $env:projPath = ".\src\NugetUnlister\NugetUnlister.csproj"
+      $env:prefix = CsProj-GetVersionPrefix($env:projPath)
+      $env:buildId = Custom-GetPaddedBuildNumber()
+      $env:fullVersion = "$($env:prefix)-alpha$($env:buildId)"
       
-      $env:combinedVersion = "$($env:csprojVersionPrefix)-alpha$($env:PADDED_BUILD_NUMBER)"
-      
-      Write-Host -ForegroundColor Green "Packing with version $($env:combinedVersion)"
+      Write-Host -ForegroundColor Green "Packing with version $($env:fullVersion)"
     
-      dotnet pack -c Release -v m -o .\nupkg\ .\src\Amusoft.UI.WPF\Amusoft.UI.WPF.csproj -p:Version=$env:combinedVersion -p:DebugType=embedded -p:EmbedAllSources=true  
+      dotnet pack $env:projPath -c Release -v m -o .\nupkg\ -p:Version=$env:fullVersion -p:DebugType=portable
 -
   branches:
     only:
@@ -59,18 +51,29 @@ for:
   
   - ps: >-
   
-     $csprojVersionPrefix = Select-Xml -Path .\src\Amusoft.UI.WPF\Amusoft.UI.WPF.csproj -XPath //Project/PropertyGroup/VersionPrefix | Select -ExpandProperty Node | Select -Expand '#text'    
-     
-     $combinedVersion = "$(csprojVersionPrefix).$($env:PADDED_BUILD_NUMBER)"    
-     
-     Write-Host -ForegroundColor Green "Packing with version $($env:combinedVersion)"
+      $env:projPath = ".\src\NugetUnlister\NugetUnlister.csproj"
+      $env:prefix = CsProj-GetVersionPrefix($env:projPath)
+      $env:buildId = Custom-GetPaddedBuildNumber()
+      $env:fullVersion = "$($env:prefix).$($env:buildId)"
+      
+      Write-Host -ForegroundColor Green "Packing with version $($env:fullVersion)"
     
-     dotnet pack -c Release -v m -o .\nupkg\ .\src\Amusoft.UI.WPF\Amusoft.UI.WPF.csproj -p:Version=$env:combinedVersion  -p:DebugType=embedded -p:EmbedAllSources=true  
+      dotnet pack $env:projPath -c Release -v m -o .\nupkg\ -p:Version=$env:fullVersion -p:DebugType=portable 
 -
   branches:
     only:
       - master 
-  deploy: off
-  artifacts: off
+  #deploy: off
+  #artifacts: off
   build_script:
-  - cmd: dotnet build -c Release .\src\Amusoft.UI.WPF\Amusoft.UI.WPF.csproj -v m
+  #- cmd: dotnet build -c Release .\src\NugetUnlister\NugetUnlister.csproj -v m
+  - ps: >-
+  
+      $env:projPath = ".\src\NugetUnlister\NugetUnlister.csproj"
+      $env:prefix = CsProj-GetVersionPrefix($env:projPath)
+      $env:buildId = Custom-GetPaddedBuildNumber()
+      $env:fullVersion = "$($env:prefix).$($env:buildId)"
+      
+      Write-Host -ForegroundColor Green "Packing with version $($env:fullVersion)"
+    
+      dotnet pack $env:projPath -c Release -v m -o .\nupkg\ -p:Version=$env:fullVersion -p:DebugType=portable 
