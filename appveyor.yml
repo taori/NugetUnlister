@@ -39,7 +39,7 @@ for:
       
       $env:prefix = CsProj-GetVersionPrefix($env:projPath)
       
-      $env:buildId = Custom-GetPaddedBuildNumber()
+      $env:buildId = Custom-GetPaddedBuildNumber
       
       $env:fullVersion = "$($env:prefix)-alpha$($env:buildId)"
       
@@ -58,7 +58,7 @@ for:
       
       $env:prefix = CsProj-GetVersionPrefix($env:projPath)
       
-      $env:buildId = Custom-GetPaddedBuildNumber()
+      $env:buildId = Custom-GetPaddedBuildNumber
       
       $env:fullVersion = "$($env:prefix).$($env:buildId)"
       
@@ -79,7 +79,7 @@ for:
       
       $env:prefix = CsProj-GetVersionPrefix($env:projPath)
       
-      $env:buildId = Custom-GetPaddedBuildNumber()
+      $env:buildId = Custom-GetPaddedBuildNumber
       
       $env:fullVersion = "$($env:prefix).$($env:buildId)"
       
