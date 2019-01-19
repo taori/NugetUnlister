@@ -36,8 +36,11 @@ for:
    - ps: >-
 
       $env:projPath = ".\src\NugetUnlister\NugetUnlister.csproj"
+      
       $env:prefix = CsProj-GetVersionPrefix($env:projPath)
+      
       $env:buildId = Custom-GetPaddedBuildNumber()
+      
       $env:fullVersion = "$($env:prefix)-alpha$($env:buildId)"
       
       Write-Host -ForegroundColor Green "Packing with version $($env:fullVersion)"
@@ -52,8 +55,11 @@ for:
   - ps: >-
   
       $env:projPath = ".\src\NugetUnlister\NugetUnlister.csproj"
+      
       $env:prefix = CsProj-GetVersionPrefix($env:projPath)
+      
       $env:buildId = Custom-GetPaddedBuildNumber()
+      
       $env:fullVersion = "$($env:prefix).$($env:buildId)"
       
       Write-Host -ForegroundColor Green "Packing with version $($env:fullVersion)"
@@ -70,8 +76,11 @@ for:
   - ps: >-
   
       $env:projPath = ".\src\NugetUnlister\NugetUnlister.csproj"
+      
       $env:prefix = CsProj-GetVersionPrefix($env:projPath)
+      
       $env:buildId = Custom-GetPaddedBuildNumber()
+      
       $env:fullVersion = "$($env:prefix).$($env:buildId)"
       
       Write-Host -ForegroundColor Green "Packing with version $($env:fullVersion)"
