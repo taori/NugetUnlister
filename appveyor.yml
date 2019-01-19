@@ -16,7 +16,7 @@ nuget:
   disable_publish_on_pr: true
   disable_publish_octopus: true  
 artifacts:
-- path: '.\nupkg\**\*.nupkg'
+- path: '.\**\*NugetUnlister*.nupkg'
   name: Release
       
 deploy:
