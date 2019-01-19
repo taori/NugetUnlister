@@ -45,7 +45,7 @@ for:
       
       Write-Host -ForegroundColor Green "Packing with version $($env:fullVersion)"
     
-      dotnet pack $env:projPath -c Release -v m -o .\nupkg\ -p:Version=$env:fullVersion -p:DebugType=portable
+      dotnet pack $env:projPath -c Release -v m -o .\nupkg -p:Version=$env:fullVersion -p:DebugType=portable
 -
   branches:
     only:
@@ -64,7 +64,7 @@ for:
       
       Write-Host -ForegroundColor Green "Packing with version $($env:fullVersion)"
     
-      dotnet pack $env:projPath -c Release -v m -o .\nupkg\ -p:Version=$env:fullVersion -p:DebugType=portable 
+      dotnet pack $env:projPath -c Release -v m -o .\nupkg -p:Version=$env:fullVersion -p:DebugType=portable 
 -
   branches:
     only:
@@ -81,8 +81,8 @@ for:
       
       $env:buildId = Custom-GetPaddedBuildNumber
       
-      $env:fullVersion = "$($env:prefix).$($env:buildId)"
+      $env:fullVersion = "$($env:prefix)-beta$($env:buildId)"
       
       Write-Host -ForegroundColor Green "Packing with version $($env:fullVersion)"
     
-      dotnet pack $env:projPath -c Release -v m -o .\nupkg\ -p:Version=$env:fullVersion -p:DebugType=portable 
+      dotnet pack $env:projPath -c Release -v m -o .\nupkg -p:Version=$env:fullVersion -p:DebugType=portable 
