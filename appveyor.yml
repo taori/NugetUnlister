@@ -1,0 +1,76 @@
+version: CI {branch} Build {build}
+image: Visual Studio 2019 Preview
+configuration: Release
+platform: Any CPU
+environment:
+ NUGET_DEPLOY_SECRET:
+  secure: cM8uuOzvNOaDyTnb9fRQbRi5sm5Tc/NqcpvscOA798nT7qAS16nfxqFGHFNTr3EG
+ 
+pull_requests:
+  do_not_increment_build_number: true
+init:
+- ps: ''
+install:
+- ps: #nuget sources
+- ps: #dotnet nuget --version
+- ps: #appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+- ps: $env:PADDED_BUILD_NUMBER = ([int]$env:appveyor_build_number).ToString("00000")
+nuget:
+  disable_publish_on_pr: true
+  disable_publish_octopus: true  
+artifacts:
+#- path: '.\snupkg\**\*.snupkg'
+#  name: ReleaseSnu
+#- path: '.\snupkg\**\*.nupkg'
+#  name: ReleaseSnu
+- path: '.\nupkg\**\*.nupkg'
+  name: Release
+      
+deploy:
+- provider: NuGet
+  api_key:
+    secure: cM8uuOzvNOaDyTnb9fRQbRi5sm5Tc/NqcpvscOA798nT7qAS16nfxqFGHFNTr3EG
+  artifact: Release
+#after_deploy:
+# - ps : Get-ChildItem .\snupkg\*.snupkg | % { dotnet nuget push $_.FullName -s https://api.nuget.org/v3/index.json -k $env:NUGET_DEPLOY_SECRET }
+  
+for:
+
+
+-
+  branches:
+    only:
+      - dev
+  build_script:
+   - ps: >-
+   
+      $env:csprojVersionPrefix = Select-Xml -Path .\src\Amusoft.UI.WPF\Amusoft.UI.WPF.csproj -XPath //Project/PropertyGroup/VersionPrefix | Select -ExpandProperty Node | Select -Expand '#text'
+      
+      $env:combinedVersion = "$($env:csprojVersionPrefix)-alpha$($env:PADDED_BUILD_NUMBER)"
+      
+      Write-Host -ForegroundColor Green "Packing with version $($env:combinedVersion)"
+    
+      dotnet pack -c Release -v m -o .\nupkg\ .\src\Amusoft.UI.WPF\Amusoft.UI.WPF.csproj -p:Version=$env:combinedVersion -p:DebugType=embedded -p:EmbedAllSources=true  
+-
+  branches:
+    only:
+      - release 
+  build_script:
+  
+  - ps: >-
+  
+     $csprojVersionPrefix = Select-Xml -Path .\src\Amusoft.UI.WPF\Amusoft.UI.WPF.csproj -XPath //Project/PropertyGroup/VersionPrefix | Select -ExpandProperty Node | Select -Expand '#text'    
+     
+     $combinedVersion = "$(csprojVersionPrefix).$($env:PADDED_BUILD_NUMBER)"    
+     
+     Write-Host -ForegroundColor Green "Packing with version $($env:combinedVersion)"
+    
+     dotnet pack -c Release -v m -o .\nupkg\ .\src\Amusoft.UI.WPF\Amusoft.UI.WPF.csproj -p:Version=$env:combinedVersion  -p:DebugType=embedded -p:EmbedAllSources=true  
+-
+  branches:
+    only:
+      - master 
+  deploy: off
+  artifacts: off
+  build_script:
+  - cmd: dotnet build -c Release .\src\Amusoft.UI.WPF\Amusoft.UI.WPF.csproj -v m
