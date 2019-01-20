@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using CommandDotNet.Attributes;
 
@@ -83,29 +84,36 @@ namespace NugetUnlister
 				try
 				{
 					var matches = await PackageHelper.GetPackagesAsync(package);
-					var filtered = PackageHelper.FilterBefore(matches, version);
+					var filtered = PackageHelper.FilterBefore(matches, version).ToArray();
+					Console.WriteLine($"Found {filtered.Length} packages below version {version}.");
 					foreach (var match in filtered)
 					{
 						try
 						{
-
-							var process = new Process();
-							process.StartInfo.FileName = "nuget.exe";
-							string arguments;
-							if (src == null)
+							using (var process = new Process())
 							{
-								arguments = $"delete {package} {match.input} -NonInteractive -Verbosity n -ApiKey {apiKey}";
+								process.StartInfo.FileName = "nuget.exe";
+								string arguments;
+								if (src == null)
+								{
+									arguments = $"delete {package} {match.input} -NonInteractive -Verbosity n -ApiKey {apiKey}";
+								}
+								else
+								{
+									arguments = $"delete {package} {match.input} -NonInteractive -Verbosity n -ApiKey {apiKey} -Source {src}";
+								}
+								process.StartInfo.Arguments = arguments;
+								Console.WriteLine($"Executing nuget {arguments}");
+								process.Start();
+								process.WaitForExit();
+								var error = await process.StandardError.ReadToEndAsync();
+								if (process.ExitCode != 0)
+								{
+									Console.ForegroundColor = ConsoleColor.Red;
+									Console.WriteLine(error);
+									return process.ExitCode;
+								}
 							}
-							else
-							{
-								arguments = $"delete {package} {match.input} -NonInteractive -Verbosity n -ApiKey {apiKey} -Source {src}";
-							}
-							process.StartInfo.Arguments = arguments;
-							Console.WriteLine($"Executing nuget {arguments}");
-							process.Start();
-							process.WaitForExit();
-							if (process.ExitCode != 0)
-								return process.ExitCode;
 						}
 						catch (Exception e)
 						{
