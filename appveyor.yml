@@ -24,6 +24,9 @@ deploy:
   api_key:
     secure: ozR9OxQlYJFAZfT0+WgueGhAZAoCrcAnn5VN8iPsiqGee+E7zJ6rPuUqQgsdJuNT
   artifact: Release
+
+before_build:
+ - ps: dotnet test .\tests\NugetUnlister.UnitTests\NugetUnlister.UnitTests.csproj
   
 for:
 
