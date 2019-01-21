@@ -31,7 +31,7 @@ namespace NugetUnlister
 
 		public static IEnumerable<(string input, SemVersion version)> FilterBefore(HashSet<string> matches, string comparand)
 		{
-			if(!SemVersion.TryParse(comparand, out var sourceSemVer))
+			if (!GetSemanticVersion(comparand, out var sourceSemVer))
 				yield break;
 
 			var items = matches.Select(s => new
@@ -48,6 +48,39 @@ namespace NugetUnlister
 			foreach (var tuple in items)
 			{
 				yield return tuple;
+			}
+		}
+
+		private static readonly Regex SemverRegex = new Regex("^[\\d]+\\.[\\d]+\\.[\\d]+", RegexOptions.Compiled);
+
+		private static bool GetSemanticVersion(string comparand, out SemVersion sourceSemVer)
+		{
+			if (SemVersion.TryParse(comparand, out sourceSemVer))
+			{
+				return true;
+			}
+			else
+			{
+				Console.WriteLine($@"""{comparand}"" can not be parsed as semantic version.");
+				var match = SemverRegex.Match(comparand);
+				if (match.Success)
+				{
+					if (SemVersion.TryParse(match.Value, out sourceSemVer))
+					{
+						Console.WriteLine($@"""{comparand}"" was parsed as {sourceSemVer}.");
+						return true;
+					}
+					else
+					{
+						Console.WriteLine($@"""{comparand}"" can not be parsed as regex.");
+						return false;
+					}
+				}
+				else
+				{
+					Console.WriteLine($@"""{comparand}"" can not be parsed as semantic version.");
+					return false;
+				}
 			}
 		}
 	}

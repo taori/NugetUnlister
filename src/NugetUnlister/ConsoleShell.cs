@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using CommandDotNet.Attributes;
+using Newtonsoft.Json;
 
 namespace NugetUnlister
 {
@@ -46,6 +47,7 @@ namespace NugetUnlister
 				{
 					var matches = await PackageHelper.GetPackagesAsync(package);
 					var filtered = PackageHelper.FilterBefore(matches, version);
+					var json = JsonConvert.SerializeObject(matches, Formatting.Indented);
 					foreach (var match in filtered)
 					{
 						Console.WriteLine(match.input);
