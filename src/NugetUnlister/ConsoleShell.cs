@@ -47,7 +47,6 @@ namespace NugetUnlister
 				{
 					var matches = await PackageHelper.GetPackagesAsync(package);
 					var filtered = PackageHelper.FilterBefore(matches, version);
-					var json = JsonConvert.SerializeObject(matches, Formatting.Indented);
 					foreach (var match in filtered)
 					{
 						Console.WriteLine(match.input);
@@ -108,11 +107,9 @@ namespace NugetUnlister
 								Console.WriteLine($"Executing nuget {arguments}");
 								process.Start();
 								process.WaitForExit();
-								var error = await process.StandardError.ReadToEndAsync();
 								if (process.ExitCode != 0)
 								{
-									Console.ForegroundColor = ConsoleColor.Red;
-									Console.WriteLine(error);
+									Console.WriteLine($"nuget process exited with exitCode: {process.ExitCode}.");
 									return process.ExitCode;
 								}
 							}
