@@ -95,16 +95,19 @@ namespace NugetUnlister
 							{
 								process.StartInfo.FileName = "nuget.exe";
 								string arguments;
+								string logArguments;
 								if (src == null)
 								{
 									arguments = $"delete {package} {match.input} -NonInteractive -Verbosity n -ApiKey {apiKey}";
+									logArguments = $"delete {package} {match.input} -NonInteractive -Verbosity n -ApiKey ***";
 								}
 								else
 								{
 									arguments = $"delete {package} {match.input} -NonInteractive -Verbosity n -ApiKey {apiKey} -Source {src}";
+									logArguments = $"delete {package} {match.input} -NonInteractive -Verbosity n -ApiKey *** -Source {src}";
 								}
 								process.StartInfo.Arguments = arguments;
-								Console.WriteLine($"Executing nuget {arguments}");
+								Console.WriteLine($"Executing nuget {logArguments}");
 								process.Start();
 								process.WaitForExit();
 								if (process.ExitCode != 0)
