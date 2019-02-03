@@ -4,7 +4,7 @@ configuration: Release
 platform: Any CPU
 environment:  
  DEPLOYSECRET:
-  secure: ozR9OxQlYJFAZfT0+WgueGhAZAoCrcAnn5VN8iPsiqGee+E7zJ6rPuUqQgsdJuNT
+  secure: jsytsUi4m7/D25NRZmpxpCYxmtF8uzCC6KXrr3U6wtYInaSXnzwSxNIxVp+OkiHl
  
 pull_requests:
   do_not_increment_build_number: true
@@ -22,7 +22,7 @@ artifacts:
 deploy:
 - provider: NuGet
   api_key:
-    secure: ozR9OxQlYJFAZfT0+WgueGhAZAoCrcAnn5VN8iPsiqGee+E7zJ6rPuUqQgsdJuNT
+    secure: jsytsUi4m7/D25NRZmpxpCYxmtF8uzCC6KXrr3U6wtYInaSXnzwSxNIxVp+OkiHl
   artifact: Release
 
 before_build:
