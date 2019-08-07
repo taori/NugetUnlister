@@ -9,10 +9,12 @@
   <ItemGroup>
     <None Remove="TestContent\input\filterTests.test1.json" />
     <None Remove="TestContent\output\filterTests.test1.json" />
+    <None Remove="TestContent\output\filterTests.test2.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="TestContent\input\filterTests.test1.json" />
+    <EmbeddedResource Include="TestContent\output\filterTests.test2.json" />
     <EmbeddedResource Include="TestContent\output\filterTests.test1.json" />
   </ItemGroup>
 

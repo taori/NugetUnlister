@@ -29,23 +29,23 @@ namespace NugetUnlister
 			return results;
 		}
 
-		public static IEnumerable<(string input, SemVersion version)> FilterBefore(HashSet<string> matches, string comparand)
+		public static IEnumerable<(string input, SemVersion version)> FilterBefore(HashSet<string> matches, string comparand, bool pre)
 		{
 			if (!GetSemanticVersion(comparand, out var sourceSemVer))
 				yield break;
 
-			var items = matches.Select(s => new
-			{
-				input = s,
-				success = SemVersion.TryParse(s, out var sem),
-				version = sem
-			})
-				.Where(d => d.success).Select(s => (s.input, s.version))
+            var items = matches.Select(s => new
+                {
+                    input = s,
+                    success = SemVersion.TryParse(s, out var sem),
+                    version = sem
+                })
+                .Where(d => d.success).Select(s => (s.input, s.version))
 				.OrderByDescending(d => d.version, Comparer<SemVersion>.Default)
-				.Where(d => d.version.CompareTo(sourceSemVer) <= 0 && !string.IsNullOrEmpty(d.version.Prerelease))
-				.Select(d => (d.input, d.version));
+				.Where(d => d.version.CompareTo(sourceSemVer) <= 0 && (pre && !string.IsNullOrEmpty(d.version.Prerelease) || !pre && string.IsNullOrEmpty(d.version.Prerelease)))
+                .Select(d => (d.input, d.version));
 
-			foreach (var tuple in items)
+            foreach (var tuple in items)
 			{
 				yield return tuple;
 			}
