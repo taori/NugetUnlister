@@ -4,7 +4,7 @@ configuration: Release
 platform: Any CPU
 environment:  
  DEPLOYSECRET:
-  secure: jsytsUi4m7/D25NRZmpxpCYxmtF8uzCC6KXrr3U6wtYInaSXnzwSxNIxVp+OkiHl
+  secure: 1g5fdzDlx1F/MesIe20QRcuZCW/i35gS7WcbLVlFPwsI70ks4suGkHOHAqz+cGIA
  
 pull_requests:
   do_not_increment_build_number: true
