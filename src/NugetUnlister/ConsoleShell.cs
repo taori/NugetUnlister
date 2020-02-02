@@ -7,6 +7,8 @@ using CommandDotNet.Attributes;
 
 namespace NugetUnlister
 {
+	[ApplicationMetadata(
+		Name = "nuget-unlister")]
 	public class ConsoleShell
 	{
 		[SubCommand]

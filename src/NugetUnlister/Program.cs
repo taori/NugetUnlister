@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using CommandDotNet;
+using CommandDotNet.HelpGeneration;
+using CommandDotNet.MicrosoftCommandLineUtils;
+using CommandDotNet.Models;
 using NLog;
 
 namespace NugetUnlister
@@ -36,9 +39,10 @@ namespace NugetUnlister
 				return RunApplication(args);
 #endif
 		}
+
 		private static int RunApplication(string[] args)
 		{
-			var runner = new AppRunner<ConsoleShell>();
+			var runner = new AppRunner<ConsoleShell>(CreateAppSettings());
 			try
 			{
 				return runner.Run(args);
@@ -61,6 +65,20 @@ namespace NugetUnlister
 			{
 				LogManager.Flush(TimeSpan.FromSeconds(10));
 			}
+		}
+
+		private static AppSettings CreateAppSettings()
+		{
+			var appSettings = new AppSettings();
+			appSettings.MethodArgumentMode = ArgumentMode.Parameter;
+			appSettings.Case = Case.CamelCase;
+			appSettings.Help = new AppHelpSettings()
+			{
+				TextStyle = HelpTextStyle.Detailed,
+				UsageAppNameStyle = UsageAppNameStyle.GlobalTool
+			};
+
+			return appSettings;
 		}
 	}
 }
