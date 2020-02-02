@@ -65,3 +65,11 @@ steps:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'nupkg'
       publishLocation: 'Container'
+
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        # Write your PowerShell commands here.
+        
+        Write-Host $(Build.BuildId)
