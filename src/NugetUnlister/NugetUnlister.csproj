@@ -15,7 +15,7 @@
 
 	<PropertyGroup>
 		<PackageId>NugetUnlister</PackageId>
-		<VersionPrefix>0.1.0</VersionPrefix>
+		<VersionPrefix>1.0.0</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 		<RepositoryUrl>https://github.com/taori/NugetUnlister.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -42,6 +42,8 @@
 	<ItemGroup>
 	  <PackageReference Include="CommandDotNet" Version="2.7.5" />
 	  <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+	  <PackageReference Include="NLog" Version="4.6.8" />
+	  <PackageReference Include="NLog.Config" Version="4.6.8" />
 	  <PackageReference Include="Semver" Version="2.0.6" />
 	</ItemGroup>
 </Project>

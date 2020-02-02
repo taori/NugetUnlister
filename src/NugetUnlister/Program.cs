@@ -1,11 +1,42 @@
 ﻿using System;
+using System.Diagnostics;
 using CommandDotNet;
+using NLog;
 
 namespace NugetUnlister
 {
 	class Program
 	{
 		static int Main(string[] args)
+		{
+#if DEBUG
+			if (Debugger.IsAttached)
+			{
+				string input;
+				do
+				{
+					Console.WriteLine("Waiting for user input.");
+					input = Console.ReadLine();
+					if (string.IsNullOrEmpty(input))
+						return 0;
+
+					Console.Clear();
+					var userArgs = input.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+					var code = RunApplication(userArgs);
+					Console.WriteLine(code);
+				} while (input != "exit");
+
+				return 0;
+			}
+			else
+			{
+				return RunApplication(args);
+			}
+#else
+				return RunApplication(args);
+#endif
+		}
+		private static int RunApplication(string[] args)
 		{
 			var runner = new AppRunner<ConsoleShell>();
 			try
@@ -25,6 +56,10 @@ namespace NugetUnlister
 				Console.WriteLine(e.StackTrace);
 				Console.WriteLine(e.InnerException?.ToString());
 				return int.MinValue;
+			}
+			finally
+			{
+				LogManager.Flush(TimeSpan.FromSeconds(10));
 			}
 		}
 	}
