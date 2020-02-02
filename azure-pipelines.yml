@@ -45,6 +45,7 @@ steps:
       feedsToUse: 'select'
 
   - task: DotNetCoreCLI@2
+    displayName: pack
     inputs:
       command: 'pack'
       packagesToPack: '**/NugetUnlister.csproj'
@@ -53,3 +54,10 @@ steps:
       versioningScheme: 'off'
       buildProperties: 'IncludeSymbols=True;PackAsTool=True'
       verbosityPack: 'Minimal'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'publish artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'nupkg'
+      publishLocation: 'Container'
