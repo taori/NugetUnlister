@@ -18,6 +18,8 @@ pr:
       - master
   autoCancel: true
 
+variables:
+  buildCounter : $[counter('rollingBuildNumber', 100)]
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -52,7 +54,7 @@ steps:
       configuration: 'Release'
       packDirectory: '$(Build.ArtifactStagingDirectory)\nupkg'
       versioningScheme: 'off'
-      buildProperties: 'IncludeSymbols=True;PackAsTool=True'
+      buildProperties: 'IncludeSymbols=True;PackAsTool=True;VersionSuffix=$(buildCounter)'
       verbosityPack: 'Minimal'
 
   - task: PublishBuildArtifacts@1
