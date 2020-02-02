@@ -59,7 +59,7 @@ steps:
 
   - task: PublishBuildArtifacts@1
     displayName: 'publish artifacts'
-    condition: eq(variables['Build.Reason'], 'PullRequest'])
+    condition: eq(variables['Build.Reason'], 'PullRequest')
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'nupkg'
