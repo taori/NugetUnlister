@@ -12,6 +12,11 @@ trigger:
   paths:
     include:
       - src/*
+pr:
+  branches:
+    include:
+      - master
+  autoCancel: true
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -38,3 +43,13 @@ steps:
       command: 'test'
       projects: '**/*.csproj'
       feedsToUse: 'select'
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'pack'
+      packagesToPack: '**/NugetUnlister.csproj'
+      configuration: 'Release'
+      packDirectory: '$(Build.ArtifactStagingDirectory)\nupkg'
+      versioningScheme: 'off'
+      buildProperties: 'IncludeSymbols=True;PackAsTool=True'
+      verbosityPack: 'Minimal'
