@@ -40,10 +40,10 @@ namespace NugetUnlister
                     success = SemVersion.TryParse(s, out var sem),
                     version = sem
                 })
-                .Where(d => d.success).Select(s => (s.input, s.version))
+                .Where(d => d.success)
+                .Select(s => (s.input, s.version))
 				.OrderByDescending(d => d.version, Comparer<SemVersion>.Default)
-				.Where(d => d.version.CompareTo(sourceSemVer) <= 0 && (pre && !string.IsNullOrEmpty(d.version.Prerelease) || !pre && string.IsNullOrEmpty(d.version.Prerelease)))
-                .Select(d => (d.input, d.version));
+				.Where(d => d.version.CompareTo(sourceSemVer) <= 0 && (pre && !string.IsNullOrEmpty(d.version.Prerelease) || !pre && string.IsNullOrEmpty(d.version.Prerelease)));
 
             foreach (var tuple in items)
 			{
@@ -51,7 +51,7 @@ namespace NugetUnlister
 			}
 		}
 
-		private static readonly Regex SemverRegex = new Regex("^[\\d]+\\.[\\d]+\\.[\\d]+", RegexOptions.Compiled);
+		private static readonly Regex SemverRegex = new Regex("^(?<major>[\\d]+)\\.(?<minor>[\\d]+)\\.(?<version>[\\d]+)\\.?(?<build>[\\d]+)?$", RegexOptions.Compiled);
 
 		private static bool GetSemanticVersion(string comparand, out SemVersion sourceSemVer)
 		{
@@ -65,6 +65,7 @@ namespace NugetUnlister
 				var match = SemverRegex.Match(comparand);
 				if (match.Success)
 				{
+					var s = new SemVersion(1,2,3,"prerelease","build");
 					if (SemVersion.TryParse(match.Value, out sourceSemVer))
 					{
 						Console.WriteLine($@"""{comparand}"" was parsed as {sourceSemVer}.");

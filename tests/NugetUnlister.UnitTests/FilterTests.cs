@@ -25,7 +25,7 @@ namespace NugetUnlister.UnitTests
 
         [Theory]
         [InlineData("0.4.0", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.test2.json")]
-        [InlineData("0.4.0.147", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.test2.json")]
+        [InlineData("0.4.0.147", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.test3.json")]
         [InlineData("0.4.0-alpha1", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.test2.json")]
         public async Task TestInputs_release(string semVer, string inputFile, string outputFile)
         {
