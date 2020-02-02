@@ -9,6 +9,7 @@ trigger:
       - master
       - dev/*
       - feature/*
+      - releases/*
   paths:
     include:
       - src/*
@@ -45,14 +46,27 @@ steps:
       feedsToUse: 'select'
 
   - task: DotNetCoreCLI@2
-    displayName: pack
+    displayName: pack beta
+    condition: not(startsWith(variables['Build.SourceBranch'], 'refs/heads/releases/'))
     inputs:
       command: 'pack'
       packagesToPack: '**/NugetUnlister.csproj'
       configuration: 'Release'
       packDirectory: '$(Build.ArtifactStagingDirectory)\nupkg'
       versioningScheme: 'off'
-      buildProperties: 'IncludeSymbols=True;PackAsTool=True;VersionSuffix=beta$(Build.BuildId);SymbolPackageFormat=snupkg'
+      buildProperties: 'IncludeSymbols=True;PackAsTool=True;SymbolPackageFormat=snupkg;VersionSuffix=beta$(Build.BuildId)'
+      verbosityPack: 'Minimal'
+
+  - task: DotNetCoreCLI@2
+    displayName: pack release
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/heads/releases/')
+    inputs:
+      command: 'pack'
+      packagesToPack: '**/NugetUnlister.csproj'
+      configuration: 'Release'
+      packDirectory: '$(Build.ArtifactStagingDirectory)\nupkg'
+      versioningScheme: 'off'
+      buildProperties: 'IncludeSymbols=True;PackAsTool=True;SymbolPackageFormat=snupkg'
       verbosityPack: 'Minimal'
 
   - task: PublishBuildArtifacts@1
