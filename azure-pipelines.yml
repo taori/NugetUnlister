@@ -52,7 +52,7 @@ steps:
       configuration: 'Release'
       packDirectory: '$(Build.ArtifactStagingDirectory)\nupkg'
       versioningScheme: 'off'
-      buildProperties: 'IncludeSymbols=True;PackAsTool=True;VersionSuffix=beta$(Build.BuildId)'
+      buildProperties: 'IncludeSymbols=True;PackAsTool=True;VersionSuffix=beta$(Build.BuildId);SymbolPackageFormat=snupkg'
       verbosityPack: 'Minimal'
 
   - task: PublishBuildArtifacts@1
