@@ -8,16 +8,14 @@
 
   <ItemGroup>
     <None Remove="TestContent\input\filterTests.test1.json" />
-    <None Remove="TestContent\output\filterTests.test1.json" />
-    <None Remove="TestContent\output\filterTests.test2.json" />
-    <None Remove="TestContent\output\filterTests.test3.json" />
+    <None Remove="TestContent\output\filterTests.prerelease.json" />
+    <None Remove="TestContent\output\filterTests.release.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="TestContent\input\filterTests.test1.json" />
-    <EmbeddedResource Include="TestContent\output\filterTests.test3.json" />
-    <EmbeddedResource Include="TestContent\output\filterTests.test2.json" />
-    <EmbeddedResource Include="TestContent\output\filterTests.test1.json" />
+    <EmbeddedResource Include="TestContent\output\filterTests.release.json" />
+    <EmbeddedResource Include="TestContent\output\filterTests.prerelease.json" />
   </ItemGroup>
 
   <ItemGroup>

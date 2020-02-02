@@ -10,9 +10,11 @@ namespace NugetUnlister.UnitTests
 	public class FilterTests
 	{
 		[Theory]
-		[InlineData("0.4.0", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.test1.json")]
-		[InlineData("0.4.0.147", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.test1.json")]
-		[InlineData("0.4.0-alpha1", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.test1.json")]
+		[InlineData("0.4.0", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.prerelease.json")]
+		[InlineData("0.4.0+147", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.prerelease.json")]
+		[InlineData("0.4.0-alpha1", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.prerelease.json")]
+		[InlineData("0.4.0-alpha1.147", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.prerelease.json")]
+		[InlineData("0.4.0-alpha1+147", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.prerelease.json")]
 		public async Task TestInputs_pre_release(string semVer, string inputFile, string outputFile)
 		{
 			var input = await FileUtility.GetEmbeddedJsonAsync<string[]>(inputFile);
@@ -24,9 +26,11 @@ namespace NugetUnlister.UnitTests
 		}
 
         [Theory]
-        [InlineData("0.4.0", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.test2.json")]
-        [InlineData("0.4.0.147", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.test3.json")]
-        [InlineData("0.4.0-alpha1", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.test2.json")]
+        [InlineData("0.4.0", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.release.json")]
+        [InlineData("0.4.0+147", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.release.json")]
+        [InlineData("0.4.0-alpha1", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.release.json")]
+        [InlineData("0.4.0-alpha1.147", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.release.json")]
+        [InlineData("0.4.0-alpha1+147", "TestContent.input.filterTests.test1.json", "TestContent.output.filterTests.release.json")]
         public async Task TestInputs_release(string semVer, string inputFile, string outputFile)
         {
             var input = await FileUtility.GetEmbeddedJsonAsync<string[]>(inputFile);
