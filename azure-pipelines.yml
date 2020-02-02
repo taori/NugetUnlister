@@ -20,7 +20,7 @@ pr:
 
 variables:
   buildCounter : $[counter('rollingBuildNumber', 100)]
-  prepareForPublish : ${{ and(succeeded(), eq(variables['Build.Reason'], 'PullRequest')) }}
+  prepareForPublish : $[ and(succeeded(), eq(variables['Build.Reason'], 'PullRequest')) ]
 pool:
   vmImage: 'ubuntu-latest'
 
