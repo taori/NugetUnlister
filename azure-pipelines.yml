@@ -4,7 +4,12 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+  branches:
+    include:
+      - master
+  paths:
+    include:
+      - src/*
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -12,18 +17,21 @@ pool:
 steps:
 
   - task: DotNetCoreCLI@2
+    displayName: restore
     inputs:
       command: 'restore'
       projects: '**/*.csproj'
       feedsToUse: 'select'
 
   - task: DotNetCoreCLI@2
+    displayName: build
     inputs:
       command: 'build'
       projects: '**/*.csproj'
       feedsToUse: 'select'
 
   - task: DotNetCoreCLI@2
+    displayName: test
     inputs:
       command: 'test'
       projects: '**/*.csproj'
