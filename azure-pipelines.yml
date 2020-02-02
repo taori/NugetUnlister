@@ -46,7 +46,6 @@ steps:
 
   - task: DotNetCoreCLI@2
     displayName: pack
-    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
     inputs:
       command: 'pack'
       packagesToPack: '**/NugetUnlister.csproj'
@@ -58,16 +57,7 @@ steps:
 
   - task: PublishBuildArtifacts@1
     displayName: 'publish artifacts'
-    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'nupkg'
       publishLocation: 'Container'
-
-  - task: PowerShell@2
-    inputs:
-      targetType: 'inline'
-      script: |
-        # Write your PowerShell commands here.
-        
-        Write-Host $(Build.BuildId)
