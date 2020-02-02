@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NugetUnlister", "NugetUnlister\NugetUnlister.csproj", "{1BB4C384-6D58-4A07-B6D6-9E56053C4153}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetUnlister.UnitTests", "..\tests\NugetUnlister.UnitTests\NugetUnlister.UnitTests.csproj", "{019B9BDD-8E4F-4861-8FD4-50437FA1BCEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NugetUnlister.UnitTests", "..\tests\NugetUnlister.UnitTests\NugetUnlister.UnitTests.csproj", "{019B9BDD-8E4F-4861-8FD4-50437FA1BCEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80C3AC85-73C8-4604-B376-750C8C1E5F6B}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
