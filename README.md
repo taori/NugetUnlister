@@ -4,8 +4,8 @@
 
 - `nuget-unlist list all [YOUR PACKAGE NAME]`
 - `nuget-unlist list PrereleaseBefore [YOUR PACKAGE NAME] [0.1.3] `
-- `nuget-unlist drop PrereleaseBefore [YOUR PACKAGE NAME] [0.1.3] [APIKEY] -s [Source of nuget repository]`
-- `nuget-unlist drop ReleaseBefore [YOUR PACKAGE NAME] [0.1.3] [APIKEY] -s [Source of nuget repository]`
+- `nuget-unlist drop PrereleaseBefore [YOUR PACKAGE NAME] [0.1.3] [APIKEY] [Source of nuget repository]`
+- `nuget-unlist drop ReleaseBefore [YOUR PACKAGE NAME] [0.1.3] [APIKEY] [Source of nuget repository]`
 
 ## CI
 
