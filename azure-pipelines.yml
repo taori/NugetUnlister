@@ -20,7 +20,6 @@ pr:
 
 variables:
   buildCounter : $[counter('rollingBuildNumber', 100)]
-  prepareForPublish : $[ and(succeeded(), eq(variables['Build.Reason'], 'PullRequest')) ]
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -49,7 +48,7 @@ steps:
 
   - task: DotNetCoreCLI@2
     displayName: pack
-    condition: $(prepareForPublish)
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
     inputs:
       command: 'pack'
       packagesToPack: '**/NugetUnlister.csproj'
@@ -61,7 +60,7 @@ steps:
 
   - task: PublishBuildArtifacts@1
     displayName: 'publish artifacts'
-    condition: $(prepareForPublish)
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'nupkg'
