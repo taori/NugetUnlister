@@ -1,5 +1,19 @@
 # NugetUnlister
 
+
+## NuGet
+
+### CommandLine
+
+[![NuGet Badge](https://buildstats.info/nuget/NugetUnlister)](https://www.nuget.org/packages/NugetUnlister/)
+[![NuGet Badge](https://buildstats.info/nuget/NugetUnlister?includePreReleases=true)](https://www.nuget.org/packages/NugetUnlister/)
+
+## CI
+
+| project        | build status           |
+| ------------- |-------------|
+| master | [![Build Status](https://dev.azure.com/taori/NugetUnlister/_apis/build/status/master?branchName=master)](https://dev.azure.com/taori/NugetUnlister/_build/latest?definitionId=14&branchName=master)|
+
 ## Usage
 
 - `nuget-unlist list all [YOUR PACKAGE NAME]`
@@ -16,12 +30,6 @@ $packageVersion = Get-ChildItem -Recurse -Filter '*.nupkg' | select { $_.Name } 
 
 & nuget-unlist drop prereleasebefore [YOUR PACKAGE ID] $packageVersion $(nugetApiKey)
 ```
-
-## CI
-
-| project        | build status           |
-| ------------- |-------------|
-| master | [![Build Status](https://dev.azure.com/taori/NugetUnlister/_apis/build/status/master?branchName=master)](https://dev.azure.com/taori/NugetUnlister/_build/latest?definitionId=14&branchName=master)|
 
 ## Breaking changes
 
