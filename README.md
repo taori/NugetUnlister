@@ -7,6 +7,16 @@
 - `nuget-unlist drop PrereleaseBefore [YOUR PACKAGE NAME] [0.1.3] [APIKEY] [Source of nuget repository]`
 - `nuget-unlist drop ReleaseBefore [YOUR PACKAGE NAME] [0.1.3] [APIKEY] [Source of nuget repository]`
 
+## Sample Usage in CI
+
+```ps
+& dotnet tool install --global NugetUnlister
+
+$packageVersion = Get-ChildItem -Recurse -Filter '*.nupkg' | select { $_.Name } -ExpandProperty Name -First 1 | Select-String -Pattern "\d[\d\w\.\+-]+(?=.nupkg)" | %{$_.Matches.Value}
+
+& nuget-unlist drop prereleasebefore [YOUR PACKAGE ID] $packageVersion $(nugetApiKey)
+```
+
 ## CI
 
 | project        | build status           |
