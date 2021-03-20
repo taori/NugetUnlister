@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using CommandDotNet.Attributes;
 
@@ -95,6 +94,31 @@ namespace NugetUnlister
 		public class Drop
 		{
 			[ApplicationMetadata(
+				Description = "Unlists first all prerelease and then all release versions before given semantic version.",
+				Syntax = "drop anyreleasebefore [package] [version] [apiKey] [packageSource]")]
+			public async Task<int> AnyReleaseBefore(
+				[Argument(Name = "package name", Description = "package name")]
+				string package,
+				[Argument(Name = "semantic version", Description = "Semantic version to compare against")]
+				string version,
+				[Argument(Name = "api key", Description = "ApiKey for package")]
+				string apiKey,
+				[Argument(Name = "package source",
+					Description =
+						"Repository source, e.g. https://www.nuget.org, https://www.nuget.org/api/v3, https://www.nuget.org/api/v2/package (see https://docs.microsoft.com/de-de/dotnet/core/tools/dotnet-nuget-delete?tabs=netcore2x)")]
+				string src = "https://www.nuget.org")
+			{
+				var exitCode = await DropBefore(package, version, apiKey, src, pre: true);
+
+				if (exitCode != 0) {
+					// Premature exit due to non-zero exit code.
+					return exitCode;
+				}
+
+				return await DropBefore(package, version, apiKey, src, pre: false);
+			}
+
+			[ApplicationMetadata(
 				Description = "Unlists all prerelease versions before given semantic version.",
 				Syntax = "drop prereleasebefore [package] [version] [apiKey] [packageSource]")]
 			public async Task<int> PrereleaseBefore(
@@ -109,7 +133,7 @@ namespace NugetUnlister
 						"Repository source, e.g. https://www.nuget.org, https://www.nuget.org/api/v3, https://www.nuget.org/api/v2/package (see https://docs.microsoft.com/de-de/dotnet/core/tools/dotnet-nuget-delete?tabs=netcore2x)")]
 				string src = "https://www.nuget.org")
 			{
-				return await DropBefore(package, version, apiKey, src, true);
+				return await DropBefore(package, version, apiKey, src, pre: true);
 			}
 
 			[ApplicationMetadata(
@@ -127,7 +151,7 @@ namespace NugetUnlister
 						"Repository source, e.g. https://www.nuget.org, https://www.nuget.org/api/v3, https://www.nuget.org/api/v2/package (see https://docs.microsoft.com/de-de/dotnet/core/tools/dotnet-nuget-delete?tabs=netcore2x)")]
 				string src = "https://www.nuget.org")
 			{
-				return await DropBefore(package, version, apiKey, src, false);
+				return await DropBefore(package, version, apiKey, src, pre: false);
 			}
 
 			private static async Task<int> DropBefore(string package, string version, string apiKey, string src,
