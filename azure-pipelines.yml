@@ -23,6 +23,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+  - task: NuGetToolInstaller@1
+    inputs:
+      versionSpec: 5.x
 
   - task: DotNetCoreCLI@2
     displayName: restore
