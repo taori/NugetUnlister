@@ -25,7 +25,7 @@ pool:
 steps:
   - task: NuGetToolInstaller@1
     inputs:
-      versionSpec: 4.x
+      versionSpec: 5.x
 
   - task: DotNetCoreCLI@2
     displayName: restore
