@@ -1,0 +1,144 @@
+name: .NET
+
+on:
+  push:
+    branches: [ master ]
+    paths: 
+      - .github/workflows/*
+      - src/*
+      - tests/*
+      
+  pull_request:
+    branches: [ master ]
+    types: 
+      - opened
+      - reopened
+      - synchronize 
+      - closed
+      
+  workflow_dispatch:
+  
+    inputs:   
+    
+      versionSuffix:
+        description: "Version suffix for nupkg"
+        
+      nugetRelease:
+        required: true
+        description: "release? (1/0)"
+        default: '0'
+        
+      verbosity:
+        required: true
+        description: "verbosity of pipeline output"
+        default: 'minimal'
+        
+      configuration:
+        required: true
+        description: "Configuration for builds"
+        default: 'Release'
+
+jobs:
+  environment : 
+    runs-on: ubuntu-latest
+    
+    outputs:      
+      versionSuffix : ${{ steps.defaults.outputs.versionSuffix }}
+      publishRelease  : ${{ steps.defaults.outputs.publishRelease }}
+      verbosity : ${{ steps.defaults.outputs.verbosity }}
+      configuration : ${{ steps.defaults.outputs.configuration }}
+
+    steps:
+              
+      - name: declare default values 
+        id: defaults
+        shell: pwsh
+        run: |        
+          $automaticTrigger = "$env:GITHUB_EVENT_NAME" -ne "workflow_dispatch"          
+          $mergePR = "master|pull_request|closed|true" -eq "${{github.base_ref}}|${{github.event_name}}|${{github.event.action}}|${{github.event.pull_request.merged}}"
+          $publishRelease = ("${{ github.event.inputs.nugetRelease }}" -eq "1") -Or ($automaticTrigger -And $mergePR)
+          Write-Host "publishRelease: $publishRelease, mergePR: $mergePR, automaticTrigger: $automaticTrigger"
+          
+          $versionSuffix = "";
+          
+          if($automaticTrigger) {
+            if("${{github.base_ref}}" -eq "master") {
+              $versionSuffix = "beta${{github.run_number}}"
+            } else {
+              $versionSuffix = "alpha${{github.run_number}}"
+            }
+          } else {
+            if([string]::IsNullOrEmpty("${{ github.event.inputs.versionSuffix }}") -eq $true){
+              $versionSuffix = ""
+            } else {
+              $versionSuffix = "${{ github.event.inputs.versionSuffix }}${{github.run_number}}"
+            }
+          }
+          
+          $values = @(
+              @("versionSuffix", $true, "$versionSuffix", "$versionSuffix"),
+              @("publishRelease", $true, "$publishRelease", "$publishRelease"),
+              @("verbosity", $true, "${{ github.event.inputs.verbosity }}", "minimal"),
+              @("configuration", $true, "${{ github.event.inputs.configuration }}", "Release")
+            )
+            
+          foreach($pair in $values){
+            $value = $pair[2]
+            if($pair[1] -eq $true -And [string]::IsNullOrEmpty("$value") -eq $true){
+                    $value = $pair[3]
+            }
+            
+            Write-Host "Assigning $($pair[0]) => $value"
+            echo "::set-output name=$($pair[0])::$value"
+          }
+    
+  build:
+  
+    runs-on: ubuntu-latest    
+    needs: environment
+    
+    env:      
+      versionSuffix : ${{ needs.environment.outputs.versionSuffix }}
+      publishRelease : ${{ needs.environment.outputs.publishRelease }}
+      verbosity : ${{ needs.environment.outputs.verbosity }}
+      configuration : ${{ needs.environment.outputs.configuration }}
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    #- name: stop
+    #  run: exit 1
+    - name: Restore dependencies
+      run: dotnet restore src/All.sln
+    - name: Build
+      run: dotnet build src/All.sln --verbosity $verbosity -c $configuration --no-restore 
+    - name: Test
+      run: dotnet test src/All.sln --verbosity $verbosity -c $configuration --no-build 
+      
+    - name: Pack
+      if: ${{ needs.environment.outputs.publishRelease == 'True' }}
+      run: dotnet pack src/Amusoft.XUnit.NLog.Extensions/Amusoft.XUnit.NLog.Extensions.csproj --verbosity $verbosity -c $configuration -o artifacts/nupkg --no-build /p:VersionSuffix=$versionSuffix
+
+    - name: Remove snupkg
+      if: ${{ needs.environment.outputs.publishRelease == 'True' }}
+      run: find artifacts/nupkg/ -name "*.snupkg" -type f -delete
+      
+    - name: Release
+      if: ${{ needs.environment.outputs.publishRelease == 'True' }}
+      run: dotnet nuget push "artifacts/nupkg/*.nupkg" -k $NUGETKEY -s https://api.nuget.org/v3/index.json
+      env:
+        NUGETKEY: ${{ secrets.NUGET }}
+        
+    - name: Remove old releases 
+      if: ${{ needs.environment.outputs.publishRelease == 'True' && github.event_name =='workflow_dispatch' }}
+      id: defaults
+      shell: pwsh
+      run: |  
+        & dotnet tool install --global NugetUnlister
+        $packageVersion = Get-ChildItem -Recurse -Filter '*.nupkg' | select { $_.Name } -ExpandProperty Name -First 1 | Select-String -Pattern "\d[\d\w\.\+-]+(?=.nupkg)" | %{$_.Matches.Value}
+        & nuget-unlist drop prereleasebefore Amusoft.XUnit.NLog.Extensions $packageVersion $NUGETKEY
+        
