@@ -1,19 +1,5 @@
 # NugetUnlister
 
-
-## NuGet
-
-### CommandLine
-
-[![NuGet Badge](https://buildstats.info/nuget/NugetUnlister)](https://www.nuget.org/packages/NugetUnlister/)
-[![NuGet Badge](https://buildstats.info/nuget/NugetUnlister?includePreReleases=true)](https://www.nuget.org/packages/NugetUnlister/)
-
-## CI
-
-| project        | build status           |
-| ------------- |-------------|
-| master | [![Build Status](https://dev.azure.com/taori/NugetUnlister/_apis/build/status/master?branchName=master)](https://dev.azure.com/taori/NugetUnlister/_build/latest?definitionId=14&branchName=master)|
-
 ## Usage
 
 - `nuget-unlist list all [YOUR PACKAGE NAME]`
@@ -36,3 +22,14 @@ $packageVersion = Get-ChildItem -Recurse -Filter '*.nupkg' | select { $_.Name } 
 
 ### Version 1.x.x
 - call syntax has been changed for most commands to simplify common execution scenarios as mentioned in #5
+
+### Version 2.0.0
+- This is now a .net 5.0 tool
+
+
+## Project state
+
+[![.GitHub](https://github.com/taori/NugetUnlister/actions/workflows/dotnet.yml/badge.svg)](https://github.com/taori/NugetUnlister/actions/workflows/dotnet.yml)
+[![GitHub issues](https://img.shields.io/github/issues/taori/NugetUnlister)](https://github.com/taori/NugetUnlister/issues)
+[![NuGet version (NugetUnlister)](https://img.shields.io/nuget/v/NugetUnlister.svg)](https://www.nuget.org/packages/NugetUnlister/)
+
