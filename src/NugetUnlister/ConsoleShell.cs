@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using CommandDotNet.Attributes;
+using NugetUnlister.Utility;
 
 namespace NugetUnlister
 {
@@ -65,9 +66,9 @@ namespace NugetUnlister
 			private static async Task<int> ListBefore(string package, string version, bool pre)
 			{
 				if (package == null)
-					throw new ExitCodeException(1, nameof(package));
+					throw new ExitCodeException(1, $"{nameof(package)} is missing");
 				if (version == null)
-					throw new ExitCodeException(2, nameof(version));
+					throw new ExitCodeException(2, $"{nameof(version)} is missing");
 
 				try
 				{
@@ -158,11 +159,11 @@ namespace NugetUnlister
 				bool pre)
 			{
 				if (package == null)
-					throw new ExitCodeException(1, nameof(package));
+					throw new ExitCodeException(1, $"{nameof(package)} is missing");
 				if (version == null)
-					throw new ExitCodeException(2, nameof(version));
+					throw new ExitCodeException(2, $"{nameof(version)} is missing");
 				if (apiKey == null)
-					throw new ExitCodeException(3, nameof(apiKey));
+					throw new ExitCodeException(3, $"{nameof(apiKey)} is missing");
 
 				try
 				{
@@ -175,46 +176,53 @@ namespace NugetUnlister
 						{
 							using (var process = new Process())
 							{
-								process.StartInfo.FileName = "nuget.exe";
+								process.StartInfo.UseShellExecute = true;
+								process.StartInfo.FileName = "dotnet";
 								string arguments;
 								string logArguments;
 								if (src == null)
 								{
 									arguments =
-										$"delete {package} {match.input} -NonInteractive -Verbosity n -ApiKey {apiKey}";
+										$"nuget delete \"{package}\" \"{match.input}\" --non-interactive -k {apiKey}";
 									logArguments =
-										$"delete {package} {match.input} -NonInteractive -Verbosity n -ApiKey ***";
+										$"nuget delete \"{package}\" \"{match.input}\" --non-interactive -k ***";
 								}
 								else
 								{
 									arguments =
-										$"delete {package} {match.input} -NonInteractive -Verbosity n -ApiKey {apiKey} -Source {src}";
+										$"nuget delete \"{package}\" \"{match.input}\" --non-interactive -k {apiKey} -s {src}";
 									logArguments =
-										$"delete {package} {match.input} -NonInteractive -Verbosity n -ApiKey *** -Source {src}";
+										$"nuget delete \"{package}\" \"{match.input}\" --non-interactive -k *** -s {src}";
 								}
 
-								process.StartInfo.Arguments = arguments;
-								Console.WriteLine($"Executing nuget {logArguments}");
-								process.Start();
-								process.WaitForExit();
-								if (process.ExitCode != 0)
+
+								Console.WriteLine($"Executing {logArguments}");
+
+								using var runner = new SimpleProcessRunner("dotnet", arguments);
+								await runner.ExecuteAsync(TimeSpan.FromSeconds(15));
+
+								if (runner.ExitCode != 0)
 								{
-									Console.WriteLine($"nuget process exited with exitCode: {process.ExitCode}.");
-									return process.ExitCode;
+									Console.WriteLine(runner.ErrorContent);
+									throw new ExitCodeException(6, "Nuget process failed");
+								}
+								else
+								{
+									Console.WriteLine(runner.OutputContent);
 								}
 							}
 						}
 						catch (Exception e)
 						{
 							Console.WriteLine(e);
-							return 5;
+							throw new ExitCodeException(5, "Process failed", e);
 						}
 					}
 				}
 				catch (Exception e)
 				{
 					Console.WriteLine(e);
-					return 4;
+					throw new ExitCodeException(4, "Unknown error occured", e);
 				}
 
 				return 0;
