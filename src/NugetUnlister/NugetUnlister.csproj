@@ -9,7 +9,7 @@
 		<Authors>Andreas Müller</Authors>
 		<Product>Andreas Müller</Product>
 		<Copyright>2019</Copyright>
-		<PackageLicenseUrl>https://github.com/taori/NugetUnlister/blob/master/LICENSE</PackageLicenseUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/taori/NugetUnlister</PackageProjectUrl>
 	</PropertyGroup>
 
