@@ -122,6 +122,9 @@ jobs:
     - name: Pack
       if: ${{ needs.environment.outputs.publishRelease == 'True' }}
       run: dotnet pack src/NugetUnlister/NugetUnlister.csproj --verbosity $verbosity -c $configuration -o artifacts/nupkg --no-build /p:VersionSuffix=$versionSuffix
+      
+    - name: debug
+      run: ls -l artifacts/nupkg
 
     - name: Remove snupkg
       if: ${{ needs.environment.outputs.publishRelease == 'True' }}
