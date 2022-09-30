@@ -204,6 +204,7 @@ namespace NugetUnlister
 								using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(15));
 								var command = await Cli.Wrap("dotnet")
 									.WithArguments(arguments)
+									.WithValidation(CommandResultValidation.None)
 									.ExecuteBufferedAsync(cts.Token);
 
 								if (command.ExitCode != 0)
