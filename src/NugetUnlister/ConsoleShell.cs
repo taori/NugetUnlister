@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using CliWrap;
+using CliWrap.Buffered;
 using CommandDotNet.Attributes;
 using NugetUnlister.Utility;
 
@@ -198,17 +201,22 @@ namespace NugetUnlister
 
 								Console.WriteLine($"Executing {logArguments}");
 
-								using var runner = new SimpleProcessRunner("dotnet", arguments);
-								await runner.ExecuteAsync(TimeSpan.FromSeconds(15));
+								using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(15));
+								var command = await Cli.Wrap("dotnet")
+									.WithArguments(arguments)
+									.ExecuteBufferedAsync(cts.Token);
 
-								if (runner.ExitCode != 0)
+								if (command.ExitCode != 0)
 								{
-									Console.WriteLine(runner.ErrorContent);
+									Console.WriteLine("Error:");
+									Console.WriteLine(command.StandardError);
+									Console.WriteLine("Output:");
+									Console.WriteLine(command.StandardOutput);
 									throw new ExitCodeException(6, "Nuget process failed");
 								}
 								else
 								{
-									Console.WriteLine(runner.OutputContent);
+									Console.WriteLine(command.StandardOutput);
 								}
 							}
 						}

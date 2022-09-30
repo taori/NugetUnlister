@@ -15,7 +15,7 @@
 
 	<PropertyGroup>
 		<PackageId>NugetUnlister</PackageId>
-		<VersionPrefix>2.0.1</VersionPrefix>
+		<VersionPrefix>2.0.2</VersionPrefix>
 		<VersionSuffix>beta</VersionSuffix>
 		<RepositoryUrl>https://github.com/taori/NugetUnlister.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -36,6 +36,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CliWrap" Version="3.5.0" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
 	</ItemGroup>
 
