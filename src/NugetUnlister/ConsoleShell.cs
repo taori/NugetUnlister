@@ -177,48 +177,39 @@ namespace NugetUnlister
 					{
 						try
 						{
-							using (var process = new Process())
+							string arguments;
+							string logArguments;
+							if (src == null)
 							{
-								process.StartInfo.UseShellExecute = true;
-								process.StartInfo.FileName = "dotnet";
-								string arguments;
-								string logArguments;
-								if (src == null)
-								{
-									arguments =
-										$"nuget delete \"{package}\" \"{match.input}\" --non-interactive -k {apiKey}";
-									logArguments =
-										$"nuget delete \"{package}\" \"{match.input}\" --non-interactive -k ***";
-								}
-								else
-								{
-									arguments =
-										$"nuget delete \"{package}\" \"{match.input}\" --non-interactive -k {apiKey} -s {src}";
-									logArguments =
-										$"nuget delete \"{package}\" \"{match.input}\" --non-interactive -k *** -s {src}";
-								}
+								arguments =
+									$"nuget delete \"{package}\" \"{match.input}\" --non-interactive --force-english-output -k {apiKey}";
+								logArguments =
+									$"nuget delete \"{package}\" \"{match.input}\" --non-interactive --force-english-output -k ***";
+							}
+							else
+							{
+								arguments =
+									$"nuget delete \"{package}\" \"{match.input}\" --non-interactive --force-english-output -k {apiKey} -s {src}";
+								logArguments =
+									$"nuget delete \"{package}\" \"{match.input}\" --non-interactive --force-english-output -k *** -s {src}";
+							}
 
 
-								Console.WriteLine($"Executing {logArguments}");
+							Console.WriteLine($"Executing {logArguments}");
 
-								using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(15));
-								var command = await Cli.Wrap("dotnet")
-									.WithArguments(arguments)
-									.WithValidation(CommandResultValidation.None)
-									.ExecuteBufferedAsync(cts.Token);
+							using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(15));
+							var command = await Cli.Wrap("dotnet")
+								.WithArguments(arguments)
+								.WithValidation(CommandResultValidation.None)
+								.ExecuteBufferedAsync(cts.Token);
 
-								if (command.ExitCode != 0)
-								{
-									Console.WriteLine("Error:");
-									Console.WriteLine(command.StandardError);
-									Console.WriteLine("Output:");
-									Console.WriteLine(command.StandardOutput);
-									throw new ExitCodeException(6, "Nuget process failed");
-								}
-								else
-								{
-									Console.WriteLine(command.StandardOutput);
-								}
+							var c = Console.ForegroundColor;
+							Console.ForegroundColor = command.StandardOutput.Contains("successful") ? ConsoleColor.Green : ConsoleColor.Red;
+							Console.Write(command.StandardOutput);
+							Console.ForegroundColor = c;
+							if (command.ExitCode != 0)
+							{
+								throw new ExitCodeException(6, "Nuget process failed");
 							}
 						}
 						catch (Exception e)
