@@ -6,7 +6,7 @@
 		<PackAsTool>true</PackAsTool>
 		<ToolCommandName>nuget-unlist</ToolCommandName>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<Authors>Andreas Müller</Authors>
+		<Authors>https://github.com/taori/NugetUnlister/graphs/contributors</Authors>
 		<Product>Andreas Müller</Product>
 		<Copyright>2022</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -15,15 +15,24 @@
 
 	<PropertyGroup>
 		<PackageId>NugetUnlister</PackageId>
-		<VersionPrefix>2.0.3</VersionPrefix>
+		<VersionPrefix>2.1.0</VersionPrefix>
 		<VersionSuffix>beta</VersionSuffix>
 		<RepositoryUrl>https://github.com/taori/NugetUnlister.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<DebugSymbols>true</DebugSymbols>
 		<DebugType>portable</DebugType>
 		<PackageTags>unlist nuget package</PackageTags>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
+	
+	<PropertyGroup>
+		<PackageIcon>Resources\packageIcon.png</PackageIcon>
+		<PackageReadmeFile>Resources\README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(IsPackable)' == 'True'">
+		<None Include="..\..\README.md" Pack="True" PackagePath="\Resources" />
+		<None Include="..\packageIcon.png" Pack="True" PackagePath="\Resources" />
+	</ItemGroup>
 
 	<!-- SourceLink -->
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -36,12 +45,6 @@
 		<!-- https://github.com/dotnet/sourcelink/blob/master/docs/README.md#embedallsources -->
 		<!-- <EmbedAllSources>true</EmbedAllSources> -->
 	</PropertyGroup>
-	<ItemGroup>
-	  <None Include="..\..\README.md">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CliWrap" Version="3.5.0" />
