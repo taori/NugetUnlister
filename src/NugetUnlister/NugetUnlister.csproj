@@ -3,10 +3,11 @@
 		<OutputType>Exe</OutputType>
 		<TargetFrameworks>net5.0</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
+		<Description>unlisting commands nuget to remove prereleases</Description>
 		<PackAsTool>true</PackAsTool>
 		<ToolCommandName>nuget-unlist</ToolCommandName>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<Authors>Andreas Müller</Authors>
+		<Authors>https://github.com/taori/NugetUnlister/graphs/contributors</Authors>
 		<Product>Andreas Müller</Product>
 		<Copyright>2022</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -15,15 +16,24 @@
 
 	<PropertyGroup>
 		<PackageId>NugetUnlister</PackageId>
-		<VersionPrefix>2.0.3</VersionPrefix>
+		<VersionPrefix>2.1.0</VersionPrefix>
 		<VersionSuffix>beta</VersionSuffix>
 		<RepositoryUrl>https://github.com/taori/NugetUnlister.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<DebugSymbols>true</DebugSymbols>
 		<DebugType>portable</DebugType>
 		<PackageTags>unlist nuget package</PackageTags>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
+	
+	<PropertyGroup>
+		<PackageIcon>Resources\packageIcon.png</PackageIcon>
+		<PackageReadmeFile>Resources\README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(IsPackable)' == 'True'">
+		<None Include="..\..\README.md" Pack="True" PackagePath="\Resources" />
+		<None Include="..\packageIcon.png" Pack="True" PackagePath="\Resources" />
+	</ItemGroup>
 
 	<!-- SourceLink -->
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -36,23 +46,18 @@
 		<!-- https://github.com/dotnet/sourcelink/blob/master/docs/README.md#embedallsources -->
 		<!-- <EmbedAllSources>true</EmbedAllSources> -->
 	</PropertyGroup>
-	<ItemGroup>
-	  <None Include="..\..\README.md">
-	    <Pack>True</Pack>
-	    <PackagePath>\</PackagePath>
-	  </None>
-	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Amusoft.Toolkit.System.CommandLine" Version="2.0.0-alpha.14" />
 		<PackageReference Include="CliWrap" Version="3.5.0" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommandDotNet" Version="2.8.2" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	  <PackageReference Include="NLog" Version="4.6.8" />
 	  <PackageReference Include="NLog.Config" Version="4.6.8" />
 	  <PackageReference Include="Semver" Version="2.0.6" />
+	  <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
 	</ItemGroup>
 </Project>

@@ -1,16 +1,17 @@
 ﻿using System;
+using System.CommandLine.Builder;
+using System.CommandLine.Parsing;
 using System.Diagnostics;
-using CommandDotNet;
-using CommandDotNet.HelpGeneration;
-using CommandDotNet.MicrosoftCommandLineUtils;
-using CommandDotNet.Models;
+using System.Threading.Tasks;
 using NLog;
+using NugetUnlister.Commands;
+using NugetUnlister.Commands.Hierarchy;
 
 namespace NugetUnlister
 {
 	class Program
 	{
-		static int Main(string[] args)
+		static async Task<int> Main(string[] args)
 		{
 #if DEBUG
 			if (Debugger.IsAttached)
@@ -25,7 +26,7 @@ namespace NugetUnlister
 
 					Console.Clear();
 					var userArgs = input.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-					var code = RunApplication(userArgs);
+					var code = await RunApplication(userArgs);
 					Console.WriteLine(code);
 				} while (input != "exit");
 
@@ -33,25 +34,26 @@ namespace NugetUnlister
 			}
 			else
 			{
-				return RunApplication(args);
+				return await RunApplication(args);
 			}
 #else
-				return RunApplication(args);
+				return await RunApplication(args);
 #endif
 		}
 
-		private static int RunApplication(string[] args)
+		private static async Task<int> RunApplication(string[] args)
 		{
-			var runner = new AppRunner<ConsoleShell>(CreateAppSettings());
+			var commandLineBuilder = new CommandLineBuilder(new ApplicationRootCommand());
 			try
 			{
-				return runner.Run(args);
+				return await commandLineBuilder
+					.UseDefaults()
+					.Build()
+					.InvokeAsync(args);
 			}
 			catch (ExitCodeException e)
 			{
 				Console.WriteLine(e.Message);
-				Console.WriteLine(e.StackTrace);
-				Console.WriteLine(e.InnerException?.ToString());
 				return e.ExitCode;
 			}
 			catch (Exception e)
@@ -65,20 +67,6 @@ namespace NugetUnlister
 			{
 				LogManager.Flush(TimeSpan.FromSeconds(10));
 			}
-		}
-
-		private static AppSettings CreateAppSettings()
-		{
-			var appSettings = new AppSettings();
-			appSettings.MethodArgumentMode = ArgumentMode.Parameter;
-			appSettings.Case = Case.CamelCase;
-			appSettings.Help = new AppHelpSettings()
-			{
-				TextStyle = HelpTextStyle.Detailed,
-				UsageAppNameStyle = UsageAppNameStyle.GlobalTool
-			};
-
-			return appSettings;
 		}
 	}
 }
