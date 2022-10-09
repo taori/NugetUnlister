@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NugetUnlister.Helpers;
 using NugetUnlister.UnitTests.Utilities;
 using Shouldly;
 using Xunit;
 
 namespace NugetUnlister.UnitTests
 {
-	public class FilterTests
+    public class FilterTests
 	{
 		[Theory]
 		[InlineData("0.4.0", "TestContent.input.filterTests.test1.json",
