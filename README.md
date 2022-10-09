@@ -5,6 +5,7 @@
 [![.GitHub](https://github.com/taori/NugetUnlister/actions/workflows/dotnet.yml/badge.svg)](https://github.com/taori/NugetUnlister/actions/workflows/dotnet.yml)
 [![GitHub issues](https://img.shields.io/github/issues/taori/NugetUnlister)](https://github.com/taori/NugetUnlister/issues)
 [![NuGet version (NugetUnlister)](https://img.shields.io/nuget/v/NugetUnlister.svg)](https://www.nuget.org/packages/NugetUnlister/)
+[![NuGet version (NugetUnlister)](https://img.shields.io/nuget/vpre/NugetUnlister.svg)](https://www.nuget.org/packages/NugetUnlister/latest/prerelease)
 
 ## Usage
 
