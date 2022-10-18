@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NugetUnlister", "NugetUnlister\NugetUnlister.csproj", "{1BB4C384-6D58-4A07-B6D6-9E56053C4153}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80C3AC85-73C8-4604-B376-750C8C1E5F6B}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		..\README.md = ..\README.md
+		..\scripts\reinstalltool.ps1 = ..\scripts\reinstalltool.ps1
 	EndProjectSection
 EndProject
 Global

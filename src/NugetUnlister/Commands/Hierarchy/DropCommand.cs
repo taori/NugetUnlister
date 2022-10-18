@@ -9,5 +9,6 @@ public class DropCommand : Command
 		AddCommand(new DropPrereleaseBefore());
 		AddCommand(new DropReleaseBefore());
 		AddCommand(new DropAnyReleaseBefore());
+		AddCommand(new DropLike());
 	}
 }

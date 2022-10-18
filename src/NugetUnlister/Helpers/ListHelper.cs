@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace NugetUnlister.Helpers;
@@ -29,4 +30,22 @@ internal static class ListHelper
 		return 0;
 	}
 
+	public static async Task<int> ListPatternAsync(string package, string pattern, bool? pre)
+	{
+		try
+		{
+			var matches = await PackageHelper.GetPackagesAsync(package);
+			var filtered = PackageHelper.FilterPattern(matches, pattern, pre).ToArray();
+			foreach (var match in filtered)
+			{
+				Console.WriteLine(match.input);
+			}
+		}
+		catch (Exception e)
+		{
+			throw new ExitCodeException(3, e.Message, e);
+		}
+
+		return 0;
+	}
 }

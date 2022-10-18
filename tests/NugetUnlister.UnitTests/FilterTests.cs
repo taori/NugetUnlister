@@ -4,10 +4,12 @@ using System.Threading.Tasks;
 using NugetUnlister.Helpers;
 using NugetUnlister.UnitTests.Utilities;
 using Shouldly;
+using VerifyXunit;
 using Xunit;
 
 namespace NugetUnlister.UnitTests
 {
+	[UsesVerify]
     public class FilterTests
 	{
 		[Theory]
@@ -49,6 +51,22 @@ namespace NugetUnlister.UnitTests
 			var expected = converted.Select(s => s.version.ToString()).ToArray();
 
 			expected.ShouldBe(output);
+		}
+
+
+		[Theory]
+		[InlineData("alpha00", null, "TestContent.input.filterTests.test1.json")]
+		[InlineData("0.2.4", null, "TestContent.input.filterTests.test1.json")]
+		[InlineData("0.2.4", true, "TestContent.input.filterTests.test1.json")]
+		[InlineData("0.2.4", false, "TestContent.input.filterTests.test1.json")]
+		public async Task PatternFilter(string pattern, bool? pre, string inputFile)
+		{
+			var input = await FileUtility.GetEmbeddedJsonAsync<string[]>(inputFile);
+			var converted = PackageHelper.FilterPattern(new HashSet<string>(input), pattern, pre);
+			var expected = converted.Select(s => s.version.ToString()).ToArray();
+
+			await Verifier.Verify(expected)
+				.UseParameters(pattern, pre, inputFile);
 		}
 	}
 }

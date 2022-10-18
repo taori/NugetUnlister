@@ -9,5 +9,6 @@ public class ListCommand : Command
 		AddCommand(new ListAllCommand());
 		AddCommand(new ListReleaseBefore());
 		AddCommand(new ListPrereleaseBefore());
+		AddCommand(new ListLike());
 	}
 }

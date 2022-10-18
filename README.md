@@ -9,12 +9,17 @@
 
 ## Usage
 
+### list commands
 - `nuget-unlist list any [YOUR PACKAGE NAME]`
 - `nuget-unlist list pre [YOUR PACKAGE NAME] [0.1.3] `
 - `nuget-unlist list rel [YOUR PACKAGE NAME] [0.1.3] `
+- `nuget-unlist list like [YOUR PACKAGE NAME] REGEXPATTERN `
+
+### drop commands
 - `nuget-unlist drop any [YOUR PACKAGE NAME] [0.1.3] [APIKEY] [Source of nuget repository]`
 - `nuget-unlist drop pre [YOUR PACKAGE NAME] [0.1.3] [APIKEY] [Source of nuget repository]`
 - `nuget-unlist drop rel [YOUR PACKAGE NAME] [0.1.3] [APIKEY] [Source of nuget repository]`
+- `nuget-unlist drop like [YOUR PACKAGE NAME] REGEXPATTERN `
 
 ## Sample Usage in CI
 
@@ -39,4 +44,8 @@ $packageVersion = Get-ChildItem -Recurse -Filter '*.nupkg' | select { $_.Name } 
 
 ### Version 2.1.0
 - Implementation change to use System.CommandLine to provide tab completion for CLI usage.
+- 
+### Version 2.2.0
++ nuget-unlist list like 
++ nuget-unlist drop like 
 
