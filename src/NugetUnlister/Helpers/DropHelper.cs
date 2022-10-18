@@ -3,7 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using System.Collections.Generic;
 using CliWrap.Buffered;
+using Semver;
 
 namespace NugetUnlister.Helpers;
 
@@ -11,18 +13,29 @@ internal class DropHelper
 {
 	internal static async Task<int> DropBefore(string package, string version, string apiKey, string src, bool pre)
 	{
+		return await DropInternal(package, version, apiKey, src, input => PackageHelper.FilterBefore(input, version, pre));
+	}
+
+	internal static async Task<int> DropLike(string package, string pattern, string apiKey, string src, bool? pre)
+	{
+		return await DropInternal(package, pattern, apiKey, src, input => PackageHelper.FilterPattern(input, pattern, pre));
+	}
+
+	private static async Task<int> DropInternal(string package, string queryIdentifier, string apiKey, string src, Func<HashSet<string>, IEnumerable<(string input, SemVersion version)>> filter)
+	{
 		if (package == null)
 			throw new ExitCodeException(1, $"{nameof(package)} is missing");
-		if (version == null)
-			throw new ExitCodeException(2, $"{nameof(version)} is missing");
+		if (queryIdentifier == null)
+			throw new ExitCodeException(2, $"{nameof(queryIdentifier)} is missing");
 		if (apiKey == null)
 			throw new ExitCodeException(3, $"{nameof(apiKey)} is missing");
 
 		try
 		{
 			var matches = await PackageHelper.GetPackagesAsync(package);
-			var filtered = PackageHelper.FilterBefore(matches, version, pre).ToArray();
-			Console.WriteLine($"Found {filtered.Length} packages below version {version}.");
+			var filtered = filter(matches).ToArray();
+			// var filtered = PackageHelper.FilterBefore(matches, version, pre).ToArray();
+			Console.WriteLine($"Found {filtered.Length} for {queryIdentifier}.");
 			foreach (var match in filtered)
 			{
 				try
@@ -77,5 +90,4 @@ internal class DropHelper
 
 		return 0;
 	}
-
 }

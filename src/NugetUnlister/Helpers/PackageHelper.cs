@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -30,28 +31,30 @@ namespace NugetUnlister.Helpers
 			return results;
 		}
 
-		public static IEnumerable<(string input, SemVersion version)> FilterBefore(HashSet<string> matches, string comparand, bool pre)
+		public static IEnumerable<(string input, SemVersion version)> FilterBefore(HashSet<string> matches, string comparand, bool? pre)
 		{
 			if (!SemVersion.TryParse(comparand, out var sourceSemVer))
 				yield break;
 
-			var items = matches.Select(s => new
-			{
-				input = s,
-				success = SemVersion.TryParse(s, out var sem),
-				version = sem
-			})
+			var items = matches.Select(s => new {input = s, success = SemVersion.TryParse(s, out var sem), version = sem})
 				.Where(d => d.success)
 				.Select(s => (s.input, s.version))
 				.OrderByDescending(d => d.version, Comparer<SemVersion>.Default)
-				.Where(d => d.version.CompareTo(sourceSemVer) <= 0 &&
-							(pre && !string.IsNullOrEmpty(d.version.Prerelease) ||
-							 !pre && string.IsNullOrEmpty(d.version.Prerelease)));
+				.Where(d => d.version.CompareTo(sourceSemVer) <= 0 && (!pre.HasValue || (string.IsNullOrEmpty(d.version.Prerelease) != pre.Value)));
 
 			foreach (var tuple in items)
 			{
 				yield return tuple;
 			}
+		}
+
+		public static IEnumerable<(string input, SemVersion version)> FilterPattern(HashSet<string> matches, string pattern, bool? pre)
+		{
+			var regex = new Regex(pattern, RegexOptions.Singleline | RegexOptions.IgnoreCase, TimeSpan.FromSeconds(1));
+			// recycle logic - return everything
+			// SemVersion did not have a public max number but 100000.0.0 should be save to use for releases of chome until 2025
+			return FilterBefore(matches, "100000.0.0", pre)
+				.Where(d => regex.IsMatch(d.input));
 		}
 	}
 
