@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{80C3AC85-73C8-4604-B376-750C8C1E5F6B}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		..\.github\workflows\dotnet.yml = ..\.github\workflows\dotnet.yml
 		..\README.md = ..\README.md
 		..\scripts\reinstalltool.ps1 = ..\scripts\reinstalltool.ps1
 	EndProjectSection
