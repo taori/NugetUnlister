@@ -16,7 +16,7 @@
 
 	<PropertyGroup>
 		<PackageId>NugetUnlister</PackageId>
-		<VersionPrefix>2.2.0</VersionPrefix>
+		<VersionPrefix>2.2.1</VersionPrefix>
 		<VersionSuffix>beta</VersionSuffix>
 		<RepositoryUrl>https://github.com/taori/NugetUnlister.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
