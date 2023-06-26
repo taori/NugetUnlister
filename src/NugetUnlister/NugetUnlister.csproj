@@ -24,7 +24,7 @@
 		<DebugType>portable</DebugType>
 		<PackageTags>unlist nuget package</PackageTags>
 	</PropertyGroup>
-	
+
 	<PropertyGroup>
 		<PackageIcon>Resources\packageIcon.png</PackageIcon>
 		<PackageReadmeFile>Resources\README.md</PackageReadmeFile>
@@ -48,16 +48,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Amusoft.Toolkit.System.CommandLine" Version="2.0.0-alpha.14" />
-		<PackageReference Include="CliWrap" Version="3.5.0" />
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+		<InternalsVisibleTo Include="NugetUnlister.UnitTests" />
+		<InternalsVisibleTo Include="NugetUnlister.IntegrationTests" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-	  <PackageReference Include="NLog" Version="4.6.8" />
-	  <PackageReference Include="NLog.Config" Version="4.6.8" />
-	  <PackageReference Include="Semver" Version="2.0.6" />
-	  <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+		<PackageReference Include="Amusoft.Toolkit.System.CommandLine" Version="2.0.0-alpha.14" />
+		<PackageReference Include="CliWrap" Version="3.5.0" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="NLog" Version="4.6.8" />
+		<PackageReference Include="NLog.Config" Version="4.6.8" />
+		<PackageReference Include="Semver" Version="2.0.6" />
+		<PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
 	</ItemGroup>
 </Project>
