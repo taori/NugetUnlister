@@ -1,21 +1,20 @@
 ﻿using System;
 
-namespace NugetUnlister
+namespace NugetUnlister;
+
+public class ExitCodeException : Exception
 {
-	public class ExitCodeException : Exception
+	/// <inheritdoc />
+	public ExitCodeException(int exitCode, string message, Exception innerException) : base(message, innerException)
 	{
-		/// <inheritdoc />
-		public ExitCodeException(int exitCode, string message, Exception innerException) : base(message, innerException)
-		{
-			ExitCode = exitCode;
-		}
-
-		/// <inheritdoc />
-		public ExitCodeException(int exitCode, string message) : base(message)
-		{
-			ExitCode = exitCode;
-		}
-
-		public int ExitCode { get; set; }
+		ExitCode = exitCode;
 	}
+
+	/// <inheritdoc />
+	public ExitCodeException(int exitCode, string message) : base(message)
+	{
+		ExitCode = exitCode;
+	}
+
+	public int ExitCode { get; set; }
 }

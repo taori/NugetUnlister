@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CommandLine;
+using System.Threading.Tasks;
 using NugetUnlister.Helpers;
 using NugetUnlister.Parameters;
 
@@ -14,18 +15,23 @@ public class ListAllCommand : Command
 
 		this.SetHandler(async (package) =>
 		{
-			try
-			{
-				var matches = await PackageHelper.GetPackagesAsync(package);
-				foreach (var match in matches)
-				{
-					Console.WriteLine(match);
-				}
-			}
-			catch (Exception e)
-			{
-				throw new ExitCodeException(1, e.Message, e);
-			}
+			await ExecuteAsync(package);
 		}, ApplicationParameters.PackageNameArgument);
+	}
+
+	internal static async Task ExecuteAsync(string package)
+	{
+		try
+		{
+			var matches = await PackageHelper.GetPackagesAsync(package);
+			foreach (var match in matches)
+			{
+				Console.WriteLine(match);
+			}
+		}
+		catch (Exception e)
+		{
+			throw new ExitCodeException(1, e.Message, e);
+		}
 	}
 }
