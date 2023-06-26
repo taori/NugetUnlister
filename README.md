@@ -44,8 +44,10 @@ $packageVersion = Get-ChildItem -Recurse -Filter '*.nupkg' | select { $_.Name } 
 
 ### Version 2.1.0
 - Implementation change to use System.CommandLine to provide tab completion for CLI usage.
-- 
+
 ### Version 2.2.0
 + nuget-unlist list like 
 + nuget-unlist drop like 
 
+### Version 2.2.1
+- Crosscompile as NET 5,6,7 so this works in CI without installing older versions of .NET
