@@ -10,10 +10,11 @@ public class ListLike : Command
 	{
 		AddArgument(ApplicationParameters.PackageNameArgument);
 		AddArgument(ApplicationParameters.RegexArgument);
+		AddOption(ApplicationParameters.SourceServerOption);
 
-		this.SetHandler(async (package, pattern) =>
+		this.SetHandler(async (packageName, pattern, packageSource) =>
 		{
-			await ListHelper.ListPatternAsync(package, pattern, null);
-		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.RegexArgument);
+			await ListHelper.ListPatternAsync(packageName, pattern, null, packageSource);
+		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.RegexArgument, ApplicationParameters.SourceServerOption);
 	}
 }

@@ -12,10 +12,11 @@ public class ListPrereleaseBefore : Command
 		AddAlias("prereleasebefore");
 		AddArgument(ApplicationParameters.PackageNameArgument);
 		AddArgument(ApplicationParameters.VersionArgument);
+		AddOption(ApplicationParameters.SourceServerOption);
 
-		this.SetHandler(async (package, version) =>
+		this.SetHandler(async (packageName, version, packageSource) =>
 		{
-			await ListHelper.ListAsync(package, version, true);
-		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.VersionArgument);
+			await ListHelper.ListAsync(packageName, version, true, packageSource);
+		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.VersionArgument, ApplicationParameters.SourceServerOption);
 	}
 }
