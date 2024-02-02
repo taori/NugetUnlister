@@ -12,18 +12,19 @@ public class ListAllCommand : Command
 	{
 		AddAlias("any");
 		AddArgument(ApplicationParameters.PackageNameArgument);
+		AddOption(ApplicationParameters.SourceServerOption);
 
-		this.SetHandler(async (package) =>
+		this.SetHandler(async (package, packageSource) =>
 		{
-			await ExecuteAsync(package);
-		}, ApplicationParameters.PackageNameArgument);
+			await ExecuteAsync(package, packageSource);
+		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.SourceServerOption);
 	}
 
-	internal static async Task ExecuteAsync(string package)
+	internal static async Task ExecuteAsync(string packageName, string? packageSource)
 	{
 		try
 		{
-			var matches = await PackageHelper.GetPackagesAsync(package);
+			var matches = await PackageHelper.GetPackagesAsync(packageName, packageSource);
 			foreach (var match in matches)
 			{
 				Console.WriteLine(match);

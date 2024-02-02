@@ -32,7 +32,7 @@ internal class DropHelper
 
 		try
 		{
-			var matches = await PackageHelper.GetPackagesAsync(package);
+			var matches = await PackageHelper.GetPackagesAsync(package, src);
 			var filtered = filter(matches).ToArray();
 			// var filtered = PackageHelper.FilterBefore(matches, version, pre).ToArray();
 			Console.WriteLine($"Found {filtered.Length} for {queryIdentifier}.");

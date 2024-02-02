@@ -12,13 +12,23 @@ namespace NugetUnlister.Helpers;
 
 public static class PackageHelper
 {
-	public static async Task<HashSet<string>> GetPackagesAsync(string packageName)
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="packageName"></param>
+	/// <param name="feedUrl">Url similar to as https://api.nuget.org/v3-flatcontainer/</param>
+	/// <returns></returns>
+	/// <exception cref="ExitCodeException"></exception>
+	public static async Task<HashSet<string>> GetPackagesAsync(string packageName, string? feedUrl)
 	{
 		string content;
 		string url;
 		using (var client = new HttpClient())
 		{
-			url = $@"https://api.nuget.org/v3-flatcontainer/{packageName}/index.json";
+			url = feedUrl == null
+				? $@"https://api.nuget.org/v3-flatcontainer/{packageName}/index.json"
+				: $@"{feedUrl.TrimEnd('/')}/{packageName}/index.json";
+
 			Console.WriteLine($"Loading packages from \"{url}\".");
 			content = await client.GetStringAsync(url).ConfigureAwait(false);
 		}

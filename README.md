@@ -51,3 +51,6 @@ $packageVersion = Get-ChildItem -Recurse -Filter '*.nupkg' | select { $_.Name } 
 
 ### Version 2.2.1
 - Crosscompile as NET 5,6,7 so this works in CI without installing older versions of .NET
+
+### Version 2.2.2
+- Fixes to properly respect the --source option

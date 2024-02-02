@@ -12,7 +12,7 @@ public class CommandTests
 	public async Task ListAll(string packageName, bool lowerCase)
 	{
 		using var session = new ConsoleCaptureSession();
-		await ListAllCommand.ExecuteAsync(packageName);
+		await ListAllCommand.ExecuteAsync(packageName, null);
 
 		await Verify(session.Content)
 			.UseParameters(packageName, lowerCase);

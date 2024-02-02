@@ -12,10 +12,11 @@ public class ListReleaseBefore : Command
 		AddAlias("releasebefore");
 		AddArgument(ApplicationParameters.PackageNameArgument);
 		AddArgument(ApplicationParameters.VersionArgument);
+		AddOption(ApplicationParameters.SourceServerOption);
 
-		this.SetHandler(async (package, version) =>
+		this.SetHandler(async (packageName, version, packageSource) =>
 		{
-			await ListHelper.ListAsync(package, version, false);
-		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.VersionArgument);
+			await ListHelper.ListAsync(packageName, version, false, packageSource);
+		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.VersionArgument, ApplicationParameters.SourceServerOption);
 	}
 }
