@@ -20,7 +20,7 @@ public class ListAllCommand : Command
 		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.SourceServerOption);
 	}
 
-	internal static async Task ExecuteAsync(string packageName, string packageSource)
+	internal static async Task ExecuteAsync(string packageName, string? packageSource)
 	{
 		try
 		{
