@@ -31,12 +31,13 @@ jobs:
       id : nugetapicheck
       shell: pwsh
       run: |      
-        "STATUS=FAILURE" >> $env:GITHUB_OUTPUT       
-        #"STATUS=$statusCode" >> $env:GITHUB_OUTPUT
+        "STATUS=FAILURE" >> $env:GITHUB_OUTPUT     
+        $status = (Invoke-WebRequest -Uri "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json2" -UseBasicParsing -DisableKeepAlive -Method Head -ErrorAction Stop).StatusCode
+        #"STATUS=$status" >> $env:GITHUB_OUTPUT
       
     - uses: actions/checkout@v4.1.7
     - name: Create an Issue API failure
-      if: ${{ steps.nugetapicheck.output.STATUS != 'OK' }}
+      if: ${{ steps.nugetapicheck.output.STATUS == 'FAILURE' }}
       uses: JasonEtco/create-an-issue@v2.9.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
