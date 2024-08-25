@@ -36,8 +36,9 @@ jobs:
         #"STATUS=$status" >> $env:GITHUB_OUTPUT
       
     - uses: actions/checkout@v4.1.7
+      if: always()
     - name: Create an Issue API failure
-      if: ${{ steps.nugetapicheck.output.STATUS == 'FAILURE' }}
+      if: ${{ always() && steps.nugetapicheck.output.STATUS == 'FAILURE' }}
       uses: JasonEtco/create-an-issue@v2.9.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
