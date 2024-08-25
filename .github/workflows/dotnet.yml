@@ -89,7 +89,7 @@ jobs:
             }
             
             Write-Host "Assigning $($pair[0]) => $value"
-            echo "::set-output name=$($pair[0])::$value"
+            echo "$($pair[0])=$value" >> $env:GITHUB_OUTPUT
           }
     
   build:
