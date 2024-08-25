@@ -43,5 +43,5 @@ jobs:
       with:
         update_existing: true
         search_existing: open
-        filename: .github/AUTO_ISSUE_TEMPLATE/nugetapibroken.md
+        filename: .github/ISSUE_TEMPLATE/apibroken.md
         
