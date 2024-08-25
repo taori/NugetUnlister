@@ -33,12 +33,17 @@ jobs:
       run: |      
         url="https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
         http_status=$(curl -o /dev/null -s -w "%{http_code}" "$url")
-        echo "STATUS=$http_status" >> $GITHUB_OUTPUT     
+        echo "STATUS=$http_status" >> $GITHUB_OUTPUT   
+        
+    - name: Output result
+      shell: bash
+      run: |      
+        echo "Status is: ${{ steps.nugetapicheck.output.STATUS }}"  
       
     - uses: actions/checkout@v4.1.7
-      if: ${{ steps.nugetapicheck.output.STATUS != '200' }}
+      if: ${{ steps.nugetapicheck.output.STATUS != 200 }}
     - name: Create an Issue API failure
-      if: ${{ steps.nugetapicheck.output.STATUS != '200' }}
+      if: ${{ steps.nugetapicheck.output.STATUS != 200 }}
       uses: JasonEtco/create-an-issue@v2.9.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
