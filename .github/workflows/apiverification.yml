@@ -30,20 +30,9 @@ jobs:
     - name: Run nuget verification
       id : nugetapicheck
       shell: pwsh
-      run: | 
-        function Get-UrlStatusCode([string] $Url)
-        {
-            try
-            {
-                return (Invoke-WebRequest -Uri $Url -UseBasicParsing -DisableKeepAlive -Method head).StatusCode
-            }
-            catch [Net.WebException]
-            {
-                return 0
-            }
-        }
-        $statusCode = Get-UrlStatusCode 'https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json2'        
-        "STATUS=$statusCode" >> $env:GITHUB_OUTPUT
+      run: |      
+        "STATUS=FAILURE" >> $env:GITHUB_OUTPUT       
+        #"STATUS=$statusCode" >> $env:GITHUB_OUTPUT
       
     - name: Create an Issue API failure
       if: ${{ steps.nugetapicheck.output.STATUS != 'OK' }}
