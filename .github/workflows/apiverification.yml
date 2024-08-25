@@ -34,6 +34,7 @@ jobs:
         "STATUS=FAILURE" >> $env:GITHUB_OUTPUT       
         #"STATUS=$statusCode" >> $env:GITHUB_OUTPUT
       
+    - uses: actions/checkout@v4.1.7
     - name: Create an Issue API failure
       if: ${{ steps.nugetapicheck.output.STATUS != 'OK' }}
       uses: JasonEtco/create-an-issue@v2.9.2
