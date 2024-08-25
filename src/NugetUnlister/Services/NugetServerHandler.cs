@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using NugetUnlister.Entities;
 using NugetUnlister.Interfaces;
 using NugetUnlister.Requests;
 
@@ -16,102 +17,86 @@ internal class NugetServerHandler(
 {
 	public async Task HandleAsync(ListRequest request)
 	{
-		foreach (var packageProvider in packageProviders.OrderByDescending(d => d.Priority))
-		{
-			if(await packageProvider.LoadPackageAsync(request.PackageName, CancellationToken.None) is not {} package)
-				continue;
+		var package = await LoadPackageAsync(request.PackageName, request.PackageSource, CancellationToken.None);
+		package.Filter(request);
 
-			package.Filter(request);
-			
-			foreach (var metadata in package.Metadata)
+		foreach (var metadata in package.Metadata)
+		{
+			if (!metadata.Listed)
 			{
-				if (!metadata.Listed)
-				{
-					logger.LogDebug("{Version} already delisted", metadata.Version);
-					continue;
-				}
-				logger.LogInformation(metadata.Version);
+				logger.LogDebug("{Version} already delisted", metadata.Version);
+				continue;
 			}
 
-			return;
+			logger.LogInformation(metadata.Version);
 		}
-		
-		logger.LogCritical("No package provider was able to handle the request");
 	}
 
 	public async Task HandleAsync(ListAllRequest request)
 	{
-		foreach (var packageProvider in packageProviders.OrderByDescending(d => d.Priority))
-		{
-			if(await packageProvider.LoadPackageAsync(request.PackageName, CancellationToken.None) is not {} package)
-				continue;
+		var package = await LoadPackageAsync(request.PackageName, request.PackageSource, CancellationToken.None);
 
-			foreach (var metadata in package.Metadata)
+		foreach (var metadata in package.Metadata)
+		{
+			if (!metadata.Listed)
 			{
-				if (!metadata.Listed)
-				{
-					logger.LogDebug("{Version} already delisted", metadata.Version);
-					continue;
-				}
-				
-				logger.LogInformation(metadata.Version);
+				logger.LogDebug("{Version} already delisted", metadata.Version);
+				continue;
 			}
 
-			return;
+			logger.LogInformation(metadata.Version);
 		}
-		
-		logger.LogCritical("No package provider was able to handle the request");
 	}
 
 	public async Task HandleAsync(DropBeforeRequest request)
 	{
-		foreach (var packageProvider in packageProviders.OrderByDescending(d => d.Priority))
-		{
-			if(await packageProvider.LoadPackageAsync(request.PackageName, CancellationToken.None) is not {} package)
-				continue;
+		var package = await LoadPackageAsync(request.PackageName, request.PackageSource, CancellationToken.None);
+		package.Filter(request);
 
-			package.Filter(request);
-			
-			foreach (var metadata in package.Metadata)
+		foreach (var metadata in package.Metadata)
+		{
+			if (!metadata.Listed)
 			{
-				if (!metadata.Listed)
-				{
-					logger.LogDebug("{Version} already delisted", metadata.Version);
-					continue;
-				}
-				
-				await nugetCli.DropAsync(request.PackageName, metadata.Version, request.ApiKey);
+				logger.LogDebug("{Version} already delisted", metadata.Version);
+				continue;
 			}
 
-			return;
+			await nugetCli.DropAsync(request.PackageName, metadata.Version, request.ApiKey);
 		}
-		
-		logger.LogCritical("No package provider was able to handle the request");
 	}
 
 	public async Task HandleAsync(DropLikeRequest request)
 	{
-		foreach (var packageProvider in packageProviders.OrderByDescending(d => d.Priority))
-		{
-			if(await packageProvider.LoadPackageAsync(request.PackageName, CancellationToken.None) is not {} package)
-				continue;
+		var package = await LoadPackageAsync(request.PackageName, request.PackageSource, CancellationToken.None);
 
-			package.Filter(request);
-			
-			foreach (var metadata in package.Metadata)
+		package.Filter(request);
+
+		foreach (var metadata in package.Metadata)
+		{
+			if (!metadata.Listed)
 			{
-				if (!metadata.Listed)
-				{
-					logger.LogDebug("{Version} already delisted", metadata.Version);
-					continue;
-				}
-				
-				await nugetCli.DropAsync(request.PackageName, metadata.Version, request.ApiKey);
+				logger.LogDebug("{Version} already delisted", metadata.Version);
+				continue;
 			}
 
-			return;
+			await nugetCli.DropAsync(request.PackageName, metadata.Version, request.ApiKey);
 		}
-		
-		logger.LogCritical("No package provider was able to handle the request");
+	}
+
+	private async Task<Package> LoadPackageAsync(string packageName, string source, CancellationToken cancellationToken)
+	{
+		foreach (var packageProvider in packageProviders.OrderByDescending(d => d.Priority))
+		{
+			if (await packageProvider.LoadPackageAsync(packageName, cancellationToken) is { } package)
+			{
+				return package;
+			}
+			else
+			{
+				logger.LogDebug("{Provider} is unable to provide a metadata package for the source {Source}", packageProvider.GetType().Name, source);
+			}
+		}
+
+		throw new ExitCodeException(1, "No package provider was able to provide a metadata package");
 	}
 }
