@@ -1,1 +1,0 @@
-The url https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json is not returning an "OK" status code. The codebase needs to be updated with the latest version of the service index
