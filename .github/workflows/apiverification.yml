@@ -43,5 +43,5 @@ jobs:
       with:
         update_existing: true
         search_existing: open
-        filename: .github/ISSUE_TEMPLATE/apibroken.md
+        filename: .github/ISSUE_TEMPLATE/nuget-org-api-broken.md
         
