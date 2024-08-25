@@ -5,6 +5,10 @@ name: nuget.org API alert
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
+  push:
+    branches: [ master ]
+    paths: 
+      - .github/workflows/apiverification.yml
   schedule:
     - cron: "0 12 * * *"
   workflow_dispatch:
@@ -18,7 +22,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  greet:
+  verifyAPI:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,11 +30,16 @@ jobs:
     - name: Run nuget verification
       id : nugetapicheck
       shell: pwsh
-      run: |
-        [System.Net.WebRequest]::Create("https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json2").GetResponse().StatusCode
+      run: | 
+        try { 
+          $result = [System.Net.WebRequest]::Create("https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json2").GetResponse().StatusCode
+          "STATUS=$result" >> $env:GITHUB_OUTPUT
+        } finally {
+          "STATUS=FAILURE" >> $env:GITHUB_OUTPUT
+        }
       
     - name: Create an Issue API failure
-      if: ${{ steps.nugetapicheck.conclusion == 'failure' }}
+      if: ${{ steps.nugetapicheck.output.STATUS != 'OK' }}
       uses: JasonEtco/create-an-issue@v2.9.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
