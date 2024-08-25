@@ -38,12 +38,12 @@ jobs:
     - name: Output result
       shell: bash
       run: |      
-        echo "Status is: ${{ steps.nugetapicheck.output.STATUS }}"  
+        echo "Status is: ${{ steps.nugetapicheck.outputs.STATUS }}"  
       
     - uses: actions/checkout@v4.1.7
-      if: ${{ steps.nugetapicheck.output.STATUS != 200 }}
+      if: ${{ steps.nugetapicheck.outputs.STATUS != 200 }}
     - name: Create an Issue API failure
-      if: ${{ steps.nugetapicheck.output.STATUS != 200 }}
+      if: ${{ steps.nugetapicheck.outputs.STATUS != 200 }}
       uses: JasonEtco/create-an-issue@v2.9.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
