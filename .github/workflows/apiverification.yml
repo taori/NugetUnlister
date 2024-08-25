@@ -35,11 +35,11 @@ jobs:
         {
             try
             {
-                (Invoke-WebRequest -Uri $Url -UseBasicParsing -DisableKeepAlive).StatusCode
+                return (Invoke-WebRequest -Uri $Url -UseBasicParsing -DisableKeepAlive -Method head).StatusCode
             }
             catch [Net.WebException]
             {
-                0
+                return 0
             }
         }
         $statusCode = Get-UrlStatusCode 'https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json2'        
