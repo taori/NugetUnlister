@@ -31,12 +31,19 @@ jobs:
       id : nugetapicheck
       shell: pwsh
       run: | 
-        try { 
-          $result = [System.Net.WebRequest]::Create("https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json2").GetResponse().StatusCode
-          "STATUS=$result" >> $env:GITHUB_OUTPUT
-        } finally {
-          "STATUS=FAILURE" >> $env:GITHUB_OUTPUT
+        function Get-UrlStatusCode([string] $Url)
+        {
+            try
+            {
+                (Invoke-WebRequest -Uri $Url -UseBasicParsing -DisableKeepAlive).StatusCode
+            }
+            catch [Net.WebException]
+            {
+                [int]$_.Exception.Response.StatusCode
+            }
         }
+        $statusCode = Get-UrlStatusCode 'https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json2'        
+        "STATUS=$statusCode" >> $env:GITHUB_OUTPUT
       
     - name: Create an Issue API failure
       if: ${{ steps.nugetapicheck.output.STATUS != 'OK' }}
