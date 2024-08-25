@@ -39,7 +39,7 @@ jobs:
             }
             catch [Net.WebException]
             {
-                [int]$_.Exception.Response.StatusCode
+                0
             }
         }
         $statusCode = Get-UrlStatusCode 'https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json2'        
