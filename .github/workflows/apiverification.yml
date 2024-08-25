@@ -27,7 +27,7 @@ jobs:
       id : nugetapicheck
       shell: pwsh
       run: |
-        [System.Net.WebRequest]::Create("https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json").GetResponse().StatusCode
+        [System.Net.WebRequest]::Create("https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json2").GetResponse().StatusCode
       
     - name: Create an Issue API failure
       if: ${{ steps.nugetapicheck.conclusion == 'failure' }}
