@@ -1,4 +1,6 @@
-﻿namespace NugetUnlister.Parameters;
+﻿using System;
+
+namespace NugetUnlister.Parameters;
 
 public static class ApplicationParameters
 {
@@ -7,4 +9,5 @@ public static class ApplicationParameters
 	public static readonly ApiKeyArgument ApiKeyArgument = new();
 	public static readonly SourceServerOption SourceServerOption = new();
 	public static readonly RegexArgument RegexArgument = new();
+	public static readonly VerbosityOption VerbosityOption = new();
 }

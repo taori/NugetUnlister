@@ -1,0 +1,870 @@
+﻿{
+  "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json",
+  "@type": [
+    "catalog:CatalogRoot",
+    "PackageRegistration",
+    "catalog:Permalink"
+  ],
+  "commitId": "4c269c03-433b-494b-84db-583271cbaf03",
+  "commitTimeStamp": "2024-08-24T17:54:50.7706438+00:00",
+  "count": 1,
+  "items": [
+    {
+      "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json#page/0.1.0-alpha.3/1.0.3-alpha.18",
+      "@type": "catalog:CatalogPage",
+      "commitId": "4c269c03-433b-494b-84db-583271cbaf03",
+      "commitTimeStamp": "2024-08-24T17:54:50.7706438+00:00",
+      "count": 16,
+      "items": [
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/0.1.0-alpha.3.json",
+          "@type": "Package",
+          "commitId": "9741a683-a166-4eb0-8b3d-afb08eff172c",
+          "commitTimeStamp": "2024-08-24T02:15:45.5799255+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.14.58/amusoft.toolkit.threading.0.1.0-alpha.3.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.14.58/amusoft.toolkit.threading.0.1.0-alpha.3.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.14.58/amusoft.toolkit.threading.0.1.0-alpha.3.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/0.1.0-alpha.3/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/0.1.0-alpha.3/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/0.1.0-alpha.3#show-readme-container",
+            "listed": false,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/0.1.0-alpha.3/amusoft.toolkit.threading.0.1.0-alpha.3.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "1900-01-01T00:00:00+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "TODO"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "0.1.0-alpha.3"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/0.1.0-alpha.3/amusoft.toolkit.threading.0.1.0-alpha.3.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.0-alpha.5.json",
+          "@type": "Package",
+          "commitId": "9741a683-a166-4eb0-8b3d-afb08eff172c",
+          "commitTimeStamp": "2024-08-24T02:15:45.5799255+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.14.58/amusoft.toolkit.threading.1.0.0-alpha.5.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.14.58/amusoft.toolkit.threading.1.0.0-alpha.5.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.14.58/amusoft.toolkit.threading.1.0.0-alpha.5.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.0-alpha.5/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.0-alpha.5/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.0-alpha.5#show-readme-container",
+            "listed": false,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.0-alpha.5/amusoft.toolkit.threading.1.0.0-alpha.5.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "1900-01-01T00:00:00+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.0-alpha.5"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.0-alpha.5/amusoft.toolkit.threading.1.0.0-alpha.5.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.0-alpha.7.json",
+          "@type": "Package",
+          "commitId": "9741a683-a166-4eb0-8b3d-afb08eff172c",
+          "commitTimeStamp": "2024-08-24T02:15:45.5799255+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.14.58/amusoft.toolkit.threading.1.0.0-alpha.7.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.14.58/amusoft.toolkit.threading.1.0.0-alpha.7.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.14.58/amusoft.toolkit.threading.1.0.0-alpha.7.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.0-alpha.7/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.0-alpha.7/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.0-alpha.7#show-readme-container",
+            "listed": false,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.0-alpha.7/amusoft.toolkit.threading.1.0.0-alpha.7.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "1900-01-01T00:00:00+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.0-alpha.7"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.0-alpha.7/amusoft.toolkit.threading.1.0.0-alpha.7.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.0-beta.4.json",
+          "@type": "Package",
+          "commitId": "9741a683-a166-4eb0-8b3d-afb08eff172c",
+          "commitTimeStamp": "2024-08-24T02:15:45.5799255+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.14.58/amusoft.toolkit.threading.1.0.0-beta.4.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.14.58/amusoft.toolkit.threading.1.0.0-beta.4.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.14.58/amusoft.toolkit.threading.1.0.0-beta.4.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.0-beta.4/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.0-beta.4/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.0-beta.4#show-readme-container",
+            "listed": false,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.0-beta.4/amusoft.toolkit.threading.1.0.0-beta.4.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "1900-01-01T00:00:00+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.0-beta.4"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.0-beta.4/amusoft.toolkit.threading.1.0.0-beta.4.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.0.json",
+          "@type": "Package",
+          "commitId": "bfa4c5e6-706a-4864-8af7-47f35dd55842",
+          "commitTimeStamp": "2024-08-24T02:10:10.9145723+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.09.25/amusoft.toolkit.threading.1.0.0.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.09.25/amusoft.toolkit.threading.1.0.0.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.09.25/amusoft.toolkit.threading.1.0.0.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.0/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.0/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.0#show-readme-container",
+            "listed": true,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.0/amusoft.toolkit.threading.1.0.0.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "2024-08-24T02:06:50.647+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.0"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.0/amusoft.toolkit.threading.1.0.0.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.1-alpha.10.json",
+          "@type": "Package",
+          "commitId": "083576c0-107b-4976-9f66-bb029ee6fcda",
+          "commitTimeStamp": "2024-08-24T17:43:58.7288098+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.1-alpha.10.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.1-alpha.10.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.1-alpha.10.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.1-alpha.10/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.1-alpha.10/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.1-alpha.10#show-readme-container",
+            "listed": false,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.1-alpha.10/amusoft.toolkit.threading.1.0.1-alpha.10.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "1900-01-01T00:00:00+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.1-alpha.10"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.1-alpha.10/amusoft.toolkit.threading.1.0.1-alpha.10.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.1-alpha.11.json",
+          "@type": "Package",
+          "commitId": "083576c0-107b-4976-9f66-bb029ee6fcda",
+          "commitTimeStamp": "2024-08-24T17:43:58.7288098+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.1-alpha.11.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.1-alpha.11.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.1-alpha.11.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.1-alpha.11/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.1-alpha.11/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.1-alpha.11#show-readme-container",
+            "listed": false,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.1-alpha.11/amusoft.toolkit.threading.1.0.1-alpha.11.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "1900-01-01T00:00:00+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.1-alpha.11"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.1-alpha.11/amusoft.toolkit.threading.1.0.1-alpha.11.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.1-beta.9.json",
+          "@type": "Package",
+          "commitId": "2ae5bb44-86c2-4c96-a28f-1a4c83dcfc82",
+          "commitTimeStamp": "2024-08-24T02:35:20.1453493+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.34.19/amusoft.toolkit.threading.1.0.1-beta.9.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.34.19/amusoft.toolkit.threading.1.0.1-beta.9.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.02.34.19/amusoft.toolkit.threading.1.0.1-beta.9.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.1-beta.9/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.1-beta.9/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.1-beta.9#show-readme-container",
+            "listed": false,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.1-beta.9/amusoft.toolkit.threading.1.0.1-beta.9.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "1900-01-01T00:00:00+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.1-beta.9"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.1-beta.9/amusoft.toolkit.threading.1.0.1-beta.9.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.1.json",
+          "@type": "Package",
+          "commitId": "53172599-0891-46e5-a78d-dbcf9f71e0dd",
+          "commitTimeStamp": "2024-08-24T17:04:57.3442807+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.04.20/amusoft.toolkit.threading.1.0.1.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.04.20/amusoft.toolkit.threading.1.0.1.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.04.20/amusoft.toolkit.threading.1.0.1.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.1/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.1/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.1#show-readme-container",
+            "listed": true,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.1/amusoft.toolkit.threading.1.0.1.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "2024-08-24T17:01:36.937+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.1"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.1/amusoft.toolkit.threading.1.0.1.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.2-alpha.19.json",
+          "@type": "Package",
+          "commitId": "4c269c03-433b-494b-84db-583271cbaf03",
+          "commitTimeStamp": "2024-08-24T17:54:50.7706438+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.53.58/amusoft.toolkit.threading.1.0.2-alpha.19.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.53.58/amusoft.toolkit.threading.1.0.2-alpha.19.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.53.58/amusoft.toolkit.threading.1.0.2-alpha.19.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.2-alpha.19/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.2-alpha.19/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.2-alpha.19#show-readme-container",
+            "listed": true,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.2-alpha.19/amusoft.toolkit.threading.1.0.2-alpha.19.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "2024-08-24T17:51:52.017+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.2-alpha.19"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.2-alpha.19/amusoft.toolkit.threading.1.0.2-alpha.19.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.2.json",
+          "@type": "Package",
+          "commitId": "1c783e22-61a6-49ed-9626-c0457deafa40",
+          "commitTimeStamp": "2024-08-24T17:11:10.2107063+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.10.35/amusoft.toolkit.threading.1.0.2.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.10.35/amusoft.toolkit.threading.1.0.2.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.10.35/amusoft.toolkit.threading.1.0.2.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.2/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.2/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.2#show-readme-container",
+            "listed": true,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.2/amusoft.toolkit.threading.1.0.2.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "2024-08-24T17:08:02.62+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.2"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.2/amusoft.toolkit.threading.1.0.2.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.3-alpha.1.14.json",
+          "@type": "Package",
+          "commitId": "083576c0-107b-4976-9f66-bb029ee6fcda",
+          "commitTimeStamp": "2024-08-24T17:43:58.7288098+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.3-alpha.1.14.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.3-alpha.1.14.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.3-alpha.1.14.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.1.14/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.3-alpha.1.14/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.3-alpha.1.14#show-readme-container",
+            "listed": false,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.1.14/amusoft.toolkit.threading.1.0.3-alpha.1.14.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "1900-01-01T00:00:00+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.3-alpha.1.14"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.1.14/amusoft.toolkit.threading.1.0.3-alpha.1.14.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.3-alpha.15.json",
+          "@type": "Package",
+          "commitId": "083576c0-107b-4976-9f66-bb029ee6fcda",
+          "commitTimeStamp": "2024-08-24T17:43:58.7288098+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.3-alpha.15.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.3-alpha.15.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.3-alpha.15.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.15/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.3-alpha.15/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.3-alpha.15#show-readme-container",
+            "listed": false,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.15/amusoft.toolkit.threading.1.0.3-alpha.15.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "1900-01-01T00:00:00+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.3-alpha.15"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.15/amusoft.toolkit.threading.1.0.3-alpha.15.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.3-alpha.16.json",
+          "@type": "Package",
+          "commitId": "083576c0-107b-4976-9f66-bb029ee6fcda",
+          "commitTimeStamp": "2024-08-24T17:43:58.7288098+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.3-alpha.16.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.3-alpha.16.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.3-alpha.16.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.16/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.3-alpha.16/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.3-alpha.16#show-readme-container",
+            "listed": false,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.16/amusoft.toolkit.threading.1.0.3-alpha.16.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "1900-01-01T00:00:00+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.3-alpha.16"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.16/amusoft.toolkit.threading.1.0.3-alpha.16.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.3-alpha.17.json",
+          "@type": "Package",
+          "commitId": "083576c0-107b-4976-9f66-bb029ee6fcda",
+          "commitTimeStamp": "2024-08-24T17:43:58.7288098+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.3-alpha.17.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.3-alpha.17.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.43.04/amusoft.toolkit.threading.1.0.3-alpha.17.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.17/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.3-alpha.17/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.3-alpha.17#show-readme-container",
+            "listed": false,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.17/amusoft.toolkit.threading.1.0.3-alpha.17.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "1900-01-01T00:00:00+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.3-alpha.17"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.17/amusoft.toolkit.threading.1.0.3-alpha.17.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        },
+        {
+          "@id": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/1.0.3-alpha.18.json",
+          "@type": "Package",
+          "commitId": "e629203a-a5ab-4c0e-9ffc-c468751bcc5f",
+          "commitTimeStamp": "2024-08-24T17:45:34.5288946+00:00",
+          "catalogEntry": {
+            "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.44.46/amusoft.toolkit.threading.1.0.3-alpha.18.json",
+            "@type": "PackageDetails",
+            "authors": "https://github.com/taori/Amusoft.Toolkit.Threading/graphs/contributors",
+            "dependencyGroups": [
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.44.46/amusoft.toolkit.threading.1.0.3-alpha.18.json#dependencygroup/net6.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": "net6.0"
+              },
+              {
+                "@id": "https://api.nuget.org/v3/catalog0/data/2024.08.24.17.44.46/amusoft.toolkit.threading.1.0.3-alpha.18.json#dependencygroup/.netstandard2.0",
+                "@type": "PackageDependencyGroup",
+                "targetFramework": ".NETStandard2.0"
+              }
+            ],
+            "description": "Amusoft.Toolkit.Threading",
+            "iconUrl": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.18/icon",
+            "id": "Amusoft.Toolkit.Threading",
+            "language": "",
+            "licenseExpression": "MIT",
+            "licenseUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.3-alpha.18/license",
+            "readmeUrl": "https://www.nuget.org/packages/Amusoft.Toolkit.Threading/1.0.3-alpha.18#show-readme-container",
+            "listed": true,
+            "minClientVersion": "",
+            "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.18/amusoft.toolkit.threading.1.0.3-alpha.18.nupkg",
+            "projectUrl": "https://github.com/taori/Amusoft.Toolkit.Threading",
+            "published": "2024-08-24T17:41:45.01+00:00",
+            "requireLicenseAcceptance": true,
+            "summary": "",
+            "tags": [
+              "ambient",
+              "scope",
+              "threading",
+              "threads",
+              "tasks",
+              "thread",
+              "task"
+            ],
+            "title": "Amusoft.Toolkit.Threading",
+            "version": "1.0.3-alpha.18"
+          },
+          "packageContent": "https://api.nuget.org/v3-flatcontainer/amusoft.toolkit.threading/1.0.3-alpha.18/amusoft.toolkit.threading.1.0.3-alpha.18.nupkg",
+          "registration": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        }
+      ],
+      "parent": "https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json",
+      "lower": "0.1.0-alpha.3",
+      "upper": "1.0.3-alpha.18"
+    }
+  ],
+  "@context": {
+    "@vocab": "http://schema.nuget.org/schema#",
+    "catalog": "http://schema.nuget.org/catalog#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "items": {
+      "@id": "catalog:item",
+      "@container": "@set"
+    },
+    "commitTimeStamp": {
+      "@id": "catalog:commitTimeStamp",
+      "@type": "xsd:dateTime"
+    },
+    "commitId": {
+      "@id": "catalog:commitId"
+    },
+    "count": {
+      "@id": "catalog:count"
+    },
+    "parent": {
+      "@id": "catalog:parent",
+      "@type": "@id"
+    },
+    "tags": {
+      "@id": "tag",
+      "@container": "@set"
+    },
+    "reasons": {
+      "@container": "@set"
+    },
+    "packageTargetFrameworks": {
+      "@id": "packageTargetFramework",
+      "@container": "@set"
+    },
+    "dependencyGroups": {
+      "@id": "dependencyGroup",
+      "@container": "@set"
+    },
+    "dependencies": {
+      "@id": "dependency",
+      "@container": "@set"
+    },
+    "packageContent": {
+      "@type": "@id"
+    },
+    "published": {
+      "@type": "xsd:dateTime"
+    },
+    "registration": {
+      "@type": "@id"
+    }
+  }
+}

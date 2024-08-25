@@ -1,0 +1,28 @@
+﻿{
+  Metadata: [
+    {
+      Version: 1.0.3-alpha.18,
+      Listed: true
+    },
+    {
+      Version: 1.0.3-alpha.17,
+      Listed: false
+    },
+    {
+      Version: 1.0.3-alpha.16,
+      Listed: false
+    },
+    {
+      Version: 1.0.3-alpha.15,
+      Listed: false
+    },
+    {
+      Version: 1.0.3-alpha.1.14,
+      Listed: false
+    },
+    {
+      Version: 0.1.0-alpha.3,
+      Listed: false
+    }
+  ]
+}

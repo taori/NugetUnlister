@@ -1,6 +1,8 @@
 ﻿using System.CommandLine;
-using NugetUnlister.Helpers;
+using Microsoft.Extensions.DependencyInjection;
+using NugetUnlister.Interfaces;
 using NugetUnlister.Parameters;
+using NugetUnlister.Scopes;
 
 namespace NugetUnlister.Commands;
 
@@ -12,9 +14,10 @@ public class ListLike : Command
 		AddArgument(ApplicationParameters.RegexArgument);
 		AddOption(ApplicationParameters.SourceServerOption);
 
-		this.SetHandler(async (packageName, pattern, packageSource) =>
+		this.SetHandler(async (packageName, pattern, packageSource, verbosity) =>
 		{
-			await ListHelper.ListPatternAsync(packageName, pattern, null, packageSource);
-		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.RegexArgument, ApplicationParameters.SourceServerOption);
+			var api = ServiceScope.Current?.ServiceProvider.GetRequiredService<IApiCalls>() ?? throw new CliUnavailableException();
+			await api.ListAsync(verbosity, packageName, null, pattern, false, packageSource);
+		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.RegexArgument, ApplicationParameters.SourceServerOption, ApplicationParameters.VerbosityOption);
 	}
 }
