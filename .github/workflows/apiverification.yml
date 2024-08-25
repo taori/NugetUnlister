@@ -1,0 +1,41 @@
+# This is a basic workflow that is manually triggered
+
+name: nuget.org API alert
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  schedule:
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+    inputs:
+      createIssue:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Create issue'
+        default: true
+        required: true
+        type: boolean
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Runs a single command using the runners shell
+    - name: Run nuget verification
+      id : nugetapicheck
+      shell: pwsh
+      run: |
+        [System.Net.WebRequest]::Create("https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json").GetResponse().StatusCode
+      
+    - name: Create an Issue API failure
+      if: ${{ steps.nugetapicheck.conclusion == 'failure' }}
+      uses: JasonEtco/create-an-issue@v2.9.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        update_existing: true
+        search_existing: open
+        filename: .github/AUTO_ISSUE_TEMPLATE/nugetapibroken.md
+        
