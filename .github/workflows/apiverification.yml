@@ -31,7 +31,7 @@ jobs:
       id : nugetapicheck
       shell: bash
       run: |      
-        url="https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index2.json"
+        url="https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
         http_status=$(curl -o /dev/null -s -w "%{http_code}" "$url")
         echo "STATUS=$http_status" >> "$GITHUB_OUTPUT" 
         
