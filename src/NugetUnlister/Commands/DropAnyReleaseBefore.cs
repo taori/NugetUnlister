@@ -1,6 +1,8 @@
 ﻿using System.CommandLine;
-using NugetUnlister.Helpers;
+using Microsoft.Extensions.DependencyInjection;
+using NugetUnlister.Interfaces;
 using NugetUnlister.Parameters;
+using NugetUnlister.Scopes;
 
 namespace NugetUnlister.Commands;
 
@@ -15,11 +17,11 @@ public class DropAnyReleaseBefore : Command
 		AddArgument(ApplicationParameters.ApiKeyArgument);
 		AddOption(ApplicationParameters.SourceServerOption);
 
-		this.SetHandler(async (package, version, apiKey, src) =>
+		this.SetHandler(async (package, version, apiKey, src, verbosity) =>
 		{
-			await DropHelper.DropBefore(package, version, apiKey, src, pre: true);
-			await DropHelper.DropBefore(package, version, apiKey, src, pre: false);
+			var api = ServiceScope.Current?.ServiceProvider.GetRequiredService<IApiCalls>() ?? throw new CliUnavailableException();
+			await api.DropBeforeAsync(verbosity, package, version, apiKey, src, null);
 
-		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.VersionArgument, ApplicationParameters.ApiKeyArgument, ApplicationParameters.SourceServerOption);
+		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.VersionArgument, ApplicationParameters.ApiKeyArgument, ApplicationParameters.SourceServerOption, ApplicationParameters.VerbosityOption);
 	}
 }

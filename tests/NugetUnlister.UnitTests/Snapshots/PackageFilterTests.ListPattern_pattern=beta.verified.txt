@@ -1,0 +1,12 @@
+﻿{
+  Metadata: [
+    {
+      Version: 1.0.1-beta.9,
+      Listed: false
+    },
+    {
+      Version: 1.0.0-beta.4,
+      Listed: false
+    }
+  ]
+}

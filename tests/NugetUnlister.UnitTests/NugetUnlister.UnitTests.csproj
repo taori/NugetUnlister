@@ -7,19 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="TestContent\input\filterTests.test1.json" />
-    <None Remove="TestContent\output\filterTests.prerelease.json" />
-    <None Remove="TestContent\output\filterTests.release.json" />
+    <None Remove="TestContent\input\*.json" />
+    <None Remove="TestContent\output\*.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="TestContent\input\filterTests.test1.json" />
-    <EmbeddedResource Include="TestContent\output\filterTests.release.json" />
-    <EmbeddedResource Include="TestContent\output\filterTests.prerelease.json" />
+    <EmbeddedResource Include="TestContent\input\*.json" />
+    <EmbeddedResource Include="TestContent\output\*.json" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="Moq" Version="4.20.70" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Shouldly" Version="4.0.0-beta0001" />
     <PackageReference Include="Verify.Xunit" Version="17.10.2" />

@@ -1,0 +1,36 @@
+﻿{
+  Metadata: [
+    {
+      Version: 1.0.2-alpha.19,
+      Listed: true
+    },
+    {
+      Version: 1.0.1-beta.9,
+      Listed: false
+    },
+    {
+      Version: 1.0.1-alpha.11,
+      Listed: false
+    },
+    {
+      Version: 1.0.1-alpha.10,
+      Listed: false
+    },
+    {
+      Version: 1.0.0-beta.4,
+      Listed: false
+    },
+    {
+      Version: 1.0.0-alpha.7,
+      Listed: false
+    },
+    {
+      Version: 1.0.0-alpha.5,
+      Listed: false
+    },
+    {
+      Version: 0.1.0-alpha.3,
+      Listed: false
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+﻿{
+  Metadata: [
+    {
+      Version: 1.0.1,
+      Listed: true
+    },
+    {
+      Version: 1.0.0,
+      Listed: true
+    }
+  ]
+}

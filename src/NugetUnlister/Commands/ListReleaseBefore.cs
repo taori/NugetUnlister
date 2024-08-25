@@ -1,6 +1,8 @@
 ﻿using System.CommandLine;
-using NugetUnlister.Helpers;
+using Microsoft.Extensions.DependencyInjection;
+using NugetUnlister.Interfaces;
 using NugetUnlister.Parameters;
+using NugetUnlister.Scopes;
 
 namespace NugetUnlister.Commands;
 
@@ -14,9 +16,10 @@ public class ListReleaseBefore : Command
 		AddArgument(ApplicationParameters.VersionArgument);
 		AddOption(ApplicationParameters.SourceServerOption);
 
-		this.SetHandler(async (packageName, version, packageSource) =>
+		this.SetHandler(async (packageName, version, packageSource, verbosity) =>
 		{
-			await ListHelper.ListAsync(packageName, version, false, packageSource);
-		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.VersionArgument, ApplicationParameters.SourceServerOption);
+			var api = ServiceScope.Current?.ServiceProvider.GetRequiredService<IApiCalls>() ?? throw new CliUnavailableException();
+			await api.ListAsync(verbosity, packageName, version, null, false, packageSource);
+		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.VersionArgument, ApplicationParameters.SourceServerOption, ApplicationParameters.VerbosityOption);
 	}
 }

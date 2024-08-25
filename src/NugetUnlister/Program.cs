@@ -4,8 +4,8 @@ using System.CommandLine.Parsing;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using NLog;
-using NugetUnlister.Commands;
 using NugetUnlister.Commands.Hierarchy;
+using NugetUnlister.Scopes;
 
 namespace NugetUnlister;
 
@@ -16,7 +16,7 @@ class Program
 #if DEBUG
 		if (Debugger.IsAttached)
 		{
-			string input;
+			string? input;
 			do
 			{
 				Console.WriteLine("Waiting for user input.");
@@ -37,35 +37,45 @@ class Program
 			return await RunApplication(args);
 		}
 #else
-				return await RunApplication(args);
+			return await RunApplication(args);
 #endif
 	}
 
 	private static async Task<int> RunApplication(string[] args)
 	{
-		var commandLineBuilder = new CommandLineBuilder(new ApplicationRootCommand());
-		try
+		using (new ServiceScope())
 		{
-			return await commandLineBuilder
-				.UseDefaults()
-				.Build()
-				.InvokeAsync(args);
-		}
-		catch (ExitCodeException e)
-		{
-			Console.WriteLine(e.Message);
-			return e.ExitCode;
-		}
-		catch (Exception e)
-		{
-			Console.WriteLine(e.Message);
-			Console.WriteLine(e.StackTrace);
-			Console.WriteLine(e.InnerException?.ToString());
-			return int.MinValue;
-		}
-		finally
-		{
-			LogManager.Flush(TimeSpan.FromSeconds(10));
+			var commandLineBuilder = new CommandLineBuilder(new ApplicationRootCommand());
+			try
+			{
+				return await commandLineBuilder
+					.UseDefaults()
+					.Build()
+					.InvokeAsync(args);
+			}
+			catch (ExitCodeException e)
+			{
+				using (new ConsoleColorScope(ConsoleColor.Red))
+				{
+					Console.WriteLine(e.Message);
+				}
+
+				return e.ExitCode;
+			}
+			catch (Exception e)
+			{
+				using (new ConsoleColorScope(ConsoleColor.Red))
+				{
+					Console.WriteLine(e.Message);
+					Console.WriteLine(e.StackTrace);
+					Console.WriteLine(e.InnerException?.ToString());
+				}
+				return int.MinValue;
+			}
+			finally
+			{
+				LogManager.Flush(TimeSpan.FromSeconds(10));
+			}
 		}
 	}
 }

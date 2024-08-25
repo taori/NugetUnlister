@@ -1,8 +1,10 @@
 ﻿using System;
 using System.CommandLine;
 using System.Threading.Tasks;
-using NugetUnlister.Helpers;
+using Microsoft.Extensions.DependencyInjection;
+using NugetUnlister.Interfaces;
 using NugetUnlister.Parameters;
+using NugetUnlister.Scopes;
 
 namespace NugetUnlister.Commands;
 
@@ -14,25 +16,10 @@ public class ListAllCommand : Command
 		AddArgument(ApplicationParameters.PackageNameArgument);
 		AddOption(ApplicationParameters.SourceServerOption);
 
-		this.SetHandler(async (package, packageSource) =>
+		this.SetHandler(async (package, packageSource, verbosity) =>
 		{
-			await ExecuteAsync(package, packageSource);
-		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.SourceServerOption);
-	}
-
-	internal static async Task ExecuteAsync(string packageName, string? packageSource)
-	{
-		try
-		{
-			var matches = await PackageHelper.GetPackagesAsync(packageName, packageSource);
-			foreach (var match in matches)
-			{
-				Console.WriteLine(match);
-			}
-		}
-		catch (Exception e)
-		{
-			throw new ExitCodeException(1, e.Message, e);
-		}
+			var api = ServiceScope.Current?.ServiceProvider.GetRequiredService<IApiCalls>() ?? throw new CliUnavailableException();
+			await api.ListAllAsync(verbosity, package, packageSource);
+		}, ApplicationParameters.PackageNameArgument, ApplicationParameters.SourceServerOption, ApplicationParameters.VerbosityOption);
 	}
 }

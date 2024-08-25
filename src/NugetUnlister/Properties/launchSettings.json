@@ -2,7 +2,7 @@
   "profiles": {
     "NugetUnlister": {
       "commandName": "Project",
-      "commandLineArgs": "list prereleasebefore -p Amusoft.UI.WPF --sv 0.4.0.149"
+      "commandLineArgs": "list prereleasebefore -p Amusoft.Toolkit.Threading --sv 1.0.3"
     }
   }
 }

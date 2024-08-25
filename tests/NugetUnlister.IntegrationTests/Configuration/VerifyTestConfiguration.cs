@@ -10,7 +10,7 @@ public class VerifyTestConfiguration
 	[ModuleInitializer]
 	public static void Initialize()
 	{
-		DiffTools.UseOrder(DiffTool.VisualStudioCode, DiffTool.VisualStudio);
+		DiffTools.UseOrder(DiffTool.TortoiseGitMerge, DiffTool.VisualStudioCode, DiffTool.VisualStudio);
 
 		VerifierSettings.DerivePathInfo(
 			(sourceFile, projectDirectory, type, method) => new(
