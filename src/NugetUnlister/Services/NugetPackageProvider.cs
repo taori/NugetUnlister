@@ -38,8 +38,8 @@ internal class NugetPackageProvider(
 			
 			return package;
 		}
-		
-		throw new ExitCodeException(3, $"No loader was able to provide a metadata package for {environmentInformation.SymbolSource}");
+
+		return null;
 	}
 
 	public int Priority => int.MaxValue;

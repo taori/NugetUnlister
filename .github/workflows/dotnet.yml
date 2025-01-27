@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths: 
-      - .github/workflows/*
+      - .github/workflows/dotnet.yml
       - src/*
       - tests/*
       
@@ -89,7 +89,7 @@ jobs:
             }
             
             Write-Host "Assigning $($pair[0]) => $value"
-            echo "::set-output name=$($pair[0])::$value"
+            echo "$($pair[0])=$value" >> $env:GITHUB_OUTPUT
           }
     
   build:
@@ -104,15 +104,15 @@ jobs:
       configuration : ${{ needs.environment.outputs.configuration }}
 
     steps:
-    - uses: actions/checkout@v2
-  
+    - uses: actions/checkout@v4.1.7
+          
     - name: Setup .NET 5,6,7
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4.0.1
       with:
         dotnet-version: |
-          5.0.x
           6.0.x
           7.0.x
+          8.0.x
         
     #- name: stop
     #  run: exit 1

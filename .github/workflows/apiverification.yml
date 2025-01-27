@@ -1,0 +1,54 @@
+# This is a basic workflow that is manually triggered
+
+name: nuget.org API alert
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  push:
+    branches: [ master ]
+    paths: 
+      - .github/workflows/apiverification.yml
+  schedule:
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+    inputs:
+      createIssue:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Create issue'
+        default: true
+        required: true
+        type: boolean
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  verifyAPI:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Runs a single command using the runners shell
+    - name: Run nuget verification
+      id : nugetapicheck
+      shell: bash
+      run: |      
+        url="https://api.nuget.org/v3/registration5-gz-semver2/amusoft.toolkit.threading/index.json"
+        http_status=$(curl -o /dev/null -s -w "%{http_code}" "$url")
+        echo "STATUS=$http_status" >> "$GITHUB_OUTPUT" 
+        
+    - name: Output result
+      shell: bash
+      run: |      
+        echo "Status is: ${{ steps.nugetapicheck.outputs.STATUS }}"  
+      
+    - uses: actions/checkout@v4.1.7
+      if: ${{ steps.nugetapicheck.outputs.STATUS != 200 }}
+    - name: Create an Issue API failure
+      if: ${{ steps.nugetapicheck.outputs.STATUS != 200 }}
+      uses: JasonEtco/create-an-issue@v2.9.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        update_existing: true
+        search_existing: open
+        filename: .github/ISSUE_TEMPLATE/nuget-org-api-broken.md
+        
