@@ -38,7 +38,7 @@ $packageVersion = Get-ChildItem -Recurse -Filter '*.nupkg' | select { $_.Name } 
 
 ### Version 2.0.0
 - This is now a .net 5.0 tool
-- 
+- ~~~~
 ### Version 3.0.0
 - This is now a .net 6.0, 7.0, 8.0 tool
 - major refactoring that also fixes interaction with the service index
@@ -58,3 +58,6 @@ $packageVersion = Get-ChildItem -Recurse -Filter '*.nupkg' | select { $_.Name } 
 
 ### Version 2.2.2
 - Fixes to properly respect the --source option
+
+### Version 3.0.1
+- Fixed issue with packages that have a large number of metadata items (#36)

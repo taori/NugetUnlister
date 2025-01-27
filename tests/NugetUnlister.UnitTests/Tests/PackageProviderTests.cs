@@ -25,7 +25,7 @@ public class PackageProviderTests
 		environment.Setup(d => d.SymbolSource).Returns("https://api.nuget.org/v3/index.json");
 		var serviceIndexLoader = new Mock<IHttpLoader>();
 		serviceIndexLoader.Setup(d => d.GetFromJsonAsync<NugetServiceIndex>(It.IsAny<string>(), It.IsAny<CancellationToken>())).Returns(Task.FromResult(JsonSerializer.Deserialize<NugetServiceIndex>(embeddedResourceReader.GetContent("TestContent.input.nuget-serviceindex.json"))));
-		serviceIndexLoader.Setup(d => d.GetFromJsonAsync<RegistrationBaseReplyThreeSixZero>(It.IsAny<string>(), It.IsAny<CancellationToken>())).Returns(Task.FromResult(JsonSerializer.Deserialize<RegistrationBaseReplyThreeSixZero>(embeddedResourceReader.GetContent("TestContent.input.semver-response-amusoft.toolkit.threading.json"))));
+		serviceIndexLoader.Setup(d => d.GetFromJsonAsync<CatalogRootThreeSixZero>(It.IsAny<string>(), It.IsAny<CancellationToken>())).Returns(Task.FromResult(JsonSerializer.Deserialize<CatalogRootThreeSixZero>(embeddedResourceReader.GetContent("TestContent.input.semver-response-amusoft.toolkit.threading.json"))));
 		var provider = new NugetPackageProvider(environment.Object, logger.Object, serviceIndexLoader.Object);
 		var package = await provider.LoadPackageAsync("Amusoft.Toolkit.Threading", CancellationToken.None);
 		package.ShouldNotBeNull();
