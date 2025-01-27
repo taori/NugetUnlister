@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using NugetUnlister.Entities;
@@ -24,15 +26,34 @@ internal class RegistrationsBaseUrlLoaderThreeSixZero : PackageLoaderBase
 	{
 		if(ServiceIdsByType["RegistrationsBaseUrl/3.6.0".ToLowerInvariant()].FirstOrDefault() is not {} registration)
 			throw new ExitCodeException(2, $"Failed to find RegistrationsBaseUrl/3.6.0");
-		
-		var registrationContent = await httpLoader.GetFromJsonAsync<RegistrationBaseReplyThreeSixZero>($"{registration}{packageName.ToLowerInvariant()}/index.json", cancellationToken);
+
+		var resourceUrl = $"{registration}{packageName.ToLowerInvariant()}/index.json";
+		var registrationContent = await httpLoader.GetFromJsonAsync<CatalogRootThreeSixZero>(resourceUrl, cancellationToken);
 		if (registrationContent is null)
 			throw new ExitCodeException(3, $"Failed to find RegistrationsBaseUrl/3.6.0");
-
-		var entries = registrationContent.items.SelectMany(d => d.items.Select(f => f.catalogEntry));
+		
+		/*
+		 * https://learn.microsoft.com/en-us/nuget/api/registration-base-url-resource
+		 * this case can happen for packages where there is a larger number of package data. In this case individual packages have to be queried using their version number.
+		 * Reported through https://github.com/taori/NugetUnlister/issues/36
+		 */
+		foreach (var page in registrationContent.catalogPages)
+		{
+			if (page.packages is null)
+			{
+				var remotePage = await httpLoader.GetFromJsonAsync<CatalogRootThreeSixZero.CatalogPage>(page.Id, cancellationToken);
+				page.packages = remotePage?.packages;
+				
+				if (page.packages is null)
+					throw new ExitCodeException(4, $"Failed to load {page.Id} as CatalogPage");
+			}
+		}
+		
 		return new Package()
 		{
-			Metadata = entries.Select(catalog => new PackageMetadata(catalog.version, catalog.listed)).ToArray()
+			Metadata = registrationContent.catalogPages
+				.SelectMany(page => page.packages?.Select(package => package.details))
+				.Select(detail => new PackageMetadata(detail.version, detail.listed)).ToArray()
 		};
 	}
 }
